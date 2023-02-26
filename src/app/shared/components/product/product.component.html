@@ -1,0 +1,19 @@
+<div class="product-container">
+    <div class="product" [routerLink]="['/product', product.id]">
+        <app-img *ngIf="product.images.length" [src]="product.images[0]"></app-img>
+    </div>
+    <div class="product-info">
+        <h2>{{product.price | currency }}</h2>
+        <p>{{product.title}}</p>
+    </div>
+    <div class="product-footer">
+        <a routerLink="." [queryParams]="{product: product.id}">
+            <button>
+                <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+        </a>
+        <button (click)="handleAddToShoppingCart()">
+            <fa-icon [icon]="faAddShoppingCart"></fa-icon>
+        </button>
+    </div>
+</div>

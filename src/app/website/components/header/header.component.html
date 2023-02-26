@@ -1,0 +1,58 @@
+<div class="show-mobile">
+    <div>
+        <button (click)="handleSideMenuOpen()" *ngIf="!sideMenuOpen">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </button>
+        <button (click)="handleSideMenuOpen()" *ngIf="sideMenuOpen">
+            <fa-icon [icon]="faClose"></fa-icon>
+        </button>
+        <a href="/home">
+            <img src="assets/images/CoolStore_1.png" alt="logo">
+            <span>CoolStore</span>
+        </a>
+        <a class="shoppingCart" href="">
+            <fa-icon [icon]="faShoppingCart"></fa-icon>
+            <span class="badge" *ngIf="counter">{{counter}}</span>
+        </a>
+    </div>
+    <div class="side-menu" [class.active]="sideMenuOpen">
+        <div *ngIf="categories?.length">
+            <li (click)="handleSideMenuOpen()" routerLinkActive="active-side" routerLink="home"><a>All</a></li>
+            <li (click)="handleSideMenuOpen()" [routerLink]="['category', category.id]" routerLinkActive="active-side"
+                *ngFor="let category of categories"><a>{{category.name}}</a></li>
+        </div>
+    </div>
+</div>
+
+<div class="hide-mobile">
+    <div>
+        <nav>
+            <a class="logo" href="/home">
+                <img [width]="60" src="assets/images/CoolStore_1.png" alt="logo">
+                <span>CoolStore</span>
+            </a>
+            <div *ngIf="categories?.length">
+                <li><a routerLinkActive="active" routerLink="home">All</a></li>
+                <li *ngFor="let category of categories"><a routerLinkActive="active"
+                        [routerLink]="['category', category.id]">{{category.name}}</a></li>
+            </div>
+        </nav>
+        <div class="info">
+            <div class="account truncate">
+                <a routerLink="/profile">
+                    <span *ngIf="user">{{user.email}}</span>
+                </a>
+                <button *ngIf="user" (click)="Logout()">
+                    logout
+                </button>
+                <button *ngIf="!user" (click)="login()">Login</button>
+            </div>
+            <div class="shopping-cart">
+                <a href="">
+                    <fa-icon [icon]="faShoppingCart"></fa-icon>
+                    <span class="badge" *ngIf="counter">{{counter }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+.product{
+    cursor: pointer;
+}
+
+.product-container {
+    background-color: rgb(black, .1);
+    position: relative;
+    border-radius: 8px;
+    height: 100%;
+
+    .product{
+        &-info {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 15px 50px 15px;
+            p{
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+
+        &-footer {
+            position: absolute;
+            bottom: 10px;
+            width: calc(100% - 25px);
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10px;
+
+            button {
+                border: none;
+                background-color: transparent;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
