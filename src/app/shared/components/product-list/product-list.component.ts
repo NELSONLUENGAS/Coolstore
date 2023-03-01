@@ -64,10 +64,6 @@ export class ProductListComponent implements OnInit {
     this.totalShoppingCart = this.StoreService.GetTotalCart()
   }
 
-  closeCart() {
-    this.cartFacade.closeCart()
-  }
-
   onShowProductDetail() {
     !this.cartOpened ? this.showProductDetail = true : this.showProductDetail = false
   }

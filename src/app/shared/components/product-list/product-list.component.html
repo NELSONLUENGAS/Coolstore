@@ -1,10 +1,9 @@
 <div class="products--grid">
-    <button>{{((cartOpened$ | async) === false)}}</button>
     <app-product [product]="product" *ngFor="let product of products"
         (addProductToCart)="onAddToShoppingCart($event)"></app-product>
 </div>
 
-<div class="cart-opened" [class.active-cart]="(cartOpened$ | async)">
+<!-- <div class="cart-opened" [class.active-cart]="(cartOpened$ | async)">
     <div class="close-btn">
         <button (click)="closeCart()">
             <fa-icon [icon]="faClose"></fa-icon>
@@ -55,7 +54,7 @@
             </button>
         </a>
     </div>
-</div>
+</div> -->
 
 <div class="product-detail-slide" [class.active]="showProductDetail && !(cartOpened$ | async)">
     <span></span>
