@@ -381,6 +381,15 @@
             }
         }
     }
+
+    .cart-opened {
+        width: 400px;
+        top: 65px;
+
+        .cart-products-list {
+            height: calc(100vh - 200px);
+        }
+    }
 }
 
 /* Medium only */
@@ -408,6 +417,16 @@
         .header-categories {
             max-width: 45vw;
         }
+    }
+
+    .cart-opened {
+        width: 400px;
+        top: 75px;
+
+        .cart-products-list {
+            height: calc(100vh - 210px);
+        }
+
     }
 }
 
@@ -437,4 +456,15 @@
         }
 
     }
+
+    .cart-opened {
+        width: 400px;
+        top: 75px;
+
+        .cart-products-list {
+            height: calc(100vh - 210px);
+        }
+
+    }
+
 }

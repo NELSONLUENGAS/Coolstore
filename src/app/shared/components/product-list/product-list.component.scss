@@ -122,16 +122,6 @@ $medium: 64em;
             }
         }
     }
-
-    .cart-opened {
-        // height: 100%;
-        width: 400px;
-        top: 65px;
-
-        .cart-products-list {
-            height: calc(100vh - 200px);
-        }
-    }
 }
 
 //tablets
@@ -159,16 +149,6 @@ $medium: 64em;
         }
     }
 
-    .cart-opened {
-        // height: 100%;
-        width: 400px;
-        top: 75px;
-
-        .cart-products-list {
-            height: calc(100vh - 210px);
-        }
-
-    }
 }
 
 //web
@@ -194,16 +174,5 @@ $medium: 64em;
                 cursor: pointer;
             }
         }
-    }
-
-    .cart-opened {
-        // height: 100%;
-        width: 400px;
-        top: 75px;
-
-        .cart-products-list {
-            height: calc(100vh - 210px);
-        }
-
     }
 }
