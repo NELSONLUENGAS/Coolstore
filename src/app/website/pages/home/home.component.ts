@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductsService } from 'src/app/services/products.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,18 +18,18 @@ export class HomeComponent implements OnInit {
   constructor(
     private ProductsService: ProductsService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
     this.ProductsService.GetAllProducts(this.limit, this.offset)
-    .pipe(
-      switchMap( products => {
-        this.products = products
-        return this.route.queryParamMap
-      })
-    )
-    .subscribe(params => {
+      .pipe(
+        switchMap(products => {
+          this.products = products
+          return this.route.queryParamMap
+        })
+      )
+      .subscribe(params => {
         this.productId = params.get('product')
       })
   }

@@ -1,11 +1,65 @@
 <div class="products--grid">
+    <button>{{((cartOpened$ | async) === false)}}</button>
     <app-product [product]="product" *ngFor="let product of products"
         (addProductToCart)="onAddToShoppingCart($event)"></app-product>
 </div>
 
-<div class="product-detail-slide" [class.active]="showProductDetail">
+<div class="cart-opened" [class.active-cart]="(cartOpened$ | async)">
+    <div class="close-btn">
+        <button (click)="closeCart()">
+            <fa-icon [icon]="faClose"></fa-icon>
+        </button>
+    </div>
+    <div class="cart-products-list">
+        <li class="cart-product-item">
+            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+            <div>
+                <h4>Handcrafted Cotton Salad</h4>
+                <p>{{ 199 | currency }}</p>
+            </div>
+        </li>
+        <li class="cart-product-item">
+            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+            <div>
+                <h4>Handcrafted Cotton Salad</h4>
+                <p>{{ 199 | currency }}</p>
+            </div>
+        </li>
+        <li class="cart-product-item">
+            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+            <div>
+                <h4>Handcrafted Cotton Salad</h4>
+                <p>{{ 199 | currency }}</p>
+            </div>
+        </li>
+        <li class="cart-product-item">
+            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+            <div>
+                <h4>Handcrafted Cotton Salad</h4>
+                <p>{{ 199 | currency }}</p>
+            </div>
+        </li>
+        <li class="cart-product-item">
+            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+            <div>
+                <h4>Handcrafted Cotton Salad</h4>
+                <p>{{ 199 | currency }}</p>
+            </div>
+        </li>
+    </div>
+    <div class="cart-footer">
+        <a href="#">
+            <h3>Go to Cart</h3>
+            <button>
+                <fa-icon [icon]="faArrow"></fa-icon>
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="product-detail-slide" [class.active]="showProductDetail && !(cartOpened$ | async)">
     <span></span>
-    <div *ngIf="productChosen" class="product-detail-container">
+    <div *ngIf=" productChosen" class="product-detail-container">
         <div class="detail-button">
             <button routerLink="." [queryParams]="{}" (click)="onHideProductDetail()">
                 <fa-icon [icon]="faClose"></fa-icon>
@@ -14,10 +68,7 @@
         <h1>{{productChosen.title}}</h1>
         <div class="detail-grid">
             <div class="detail-swiper">
-                <swiper 
-                [slidesPerView]="1" 
-                [pagination]="true"
-                class="swiper-detail">
+                <swiper [slidesPerView]="1" [pagination]="true" class="swiper-detail">
                     <ng-template swiperSlide *ngFor="let image of productChosen.images">
                         <img [src]="image" alt="detail-Image">
                     </ng-template>
@@ -25,7 +76,7 @@
             </div>
             <div class="detail-description ">
                 <h3>{{productChosen.price | currency}}</h3>
-                <p >{{productChosen.description}}</p>
+                <p>{{productChosen.description}}</p>
             </div>
         </div>
         <div class="detail-more">

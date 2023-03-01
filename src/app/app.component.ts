@@ -33,9 +33,10 @@ export class AppComponent implements OnInit {
       name: 'Carla',
       email: 'Carla@gmail.com',
       password: '12345',
-      // role: 'customer'
+      role: 'customer',
+      avatar: 'https://api.lorem.space/image/face?w=640&h=480&r=867'
     })
-      .subscribe(user => console.log(user))
+      .subscribe((user: IUser) => console.log(user))
   }
 
   download() {
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit {
     console.log(file);
 
     file && this.FileService.uploadFile(file)
-      .subscribe(rta => {
+      .subscribe((rta: any) => {
         this.imgUpload = rta.location
       })
   }

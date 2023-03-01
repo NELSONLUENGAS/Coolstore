@@ -20,24 +20,24 @@ export class CategoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private ProductService: ProductsService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap
-    .pipe(
-      switchMap( params => {
-        this.categoryId = params.get('id')
-        return this.route.queryParamMap
-      }),
-      switchMap( params => {
-        this.productId = params.get('product')
-        return this.categoryId ?  
-          this.ProductService.GetByCategory(this.categoryId, this.limit, this.offset) 
-          : []
-      }),
-    )
-    .subscribe( data => {
-     this.products = data
-    })
+      .pipe(
+        switchMap(params => {
+          this.categoryId = params.get('id')
+          return this.route.queryParamMap
+        }),
+        switchMap(params => {
+          this.productId = params.get('product')
+          return this.categoryId ?
+            this.ProductService.GetByCategory(this.categoryId, this.limit, this.offset)
+            : []
+        }),
+      )
+      .subscribe(data => {
+        this.products = data
+      })
   }
 }

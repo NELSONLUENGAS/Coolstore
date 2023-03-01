@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { ILogin } from '../models/IAuth';
 import { IUser } from '../models/IUsers';
 import { TokenService } from './token.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { TokenService } from './token.service';
 export class AuthService {
 
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/auth/'
+  private apiUrl = `${environment.apiUrl}/auth`
 
   constructor(
     private http: HttpClient,
@@ -24,7 +25,7 @@ export class AuthService {
   Login(email: string, password: string): Observable<IUser> {
     return this.http.post<ILogin>(`${this.apiUrl}login`, { email, password })
       .pipe(
-        tap((response) => {
+        tap((response: any) => {
           this.TokenService.saveToken(response.access_token)
         }),
         switchMap(() => this.Profile())
@@ -38,7 +39,7 @@ export class AuthService {
   Profile(): Observable<IUser> {
     return this.http.get<IUser>(`${this.apiUrl}profile`)
       .pipe(
-        tap(user => this.userActive.next(user))
+        tap((user: any) => this.userActive.next(user))
       )
   }
 }
