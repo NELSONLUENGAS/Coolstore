@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { faBarsStaggered, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faBarsStaggered, faShoppingCart, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
 import { Observable, switchMap } from 'rxjs';
 import { ICategory } from 'src/app/models/IProduct';
@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
   counter = 0
   sideMenuOpen = false
   user: IUser | null = null
+  faCloseCircle = faTimesCircle
+  faArrow = faArrowRight
 
 
   constructor(
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   loading$: Observable<boolean> = new Observable()
+  cartOpened$ = this.cartFacade.cartOpen$
 
   ngOnInit(): void {
     this.loading$ = this.store.select(selectProductLoading)
@@ -68,6 +71,10 @@ export class HeaderComponent implements OnInit {
 
   onClickedCart() {
     this.cartFacade.openCart()
+  }
+
+  closeCart() {
+    this.cartFacade.closeCart()
   }
 
   login() {
