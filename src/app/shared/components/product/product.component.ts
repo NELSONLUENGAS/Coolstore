@@ -18,11 +18,11 @@ export class ProductComponent {
       id: '',
       name: ''
     },
-    images: []  
+    images: []
   }
 
   @Output() addProductToCart = new EventEmitter<IProduct>()
-  
+
   faAddShoppingCart = faCartPlus
   faEye = faEye
 

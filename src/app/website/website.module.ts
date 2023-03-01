@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from '../shared/shared.module';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { CartFacadeService } from '../NGRX/facades/cart.facade.service';
 
 
 @NgModule({
@@ -37,6 +38,9 @@ import { QuicklinkModule } from 'ngx-quicklink';
     SwiperModule,
     SharedModule,
     QuicklinkModule,
+  ],
+  providers: [
+    CartFacadeService
   ]
 })
 export class WebsiteModule { }

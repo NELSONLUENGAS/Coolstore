@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+  handleOpenCart(bool: boolean) {
+    console.log(bool, 'booleannn');
+
+  }
 }

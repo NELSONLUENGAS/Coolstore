@@ -13,13 +13,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
     private TokenService: TokenService
-  ) {}
+  ) { }
 
-  private addToken(request: HttpRequest<unknown>){
+  private addToken(request: HttpRequest<unknown>) {
     console.log('add token');
-    
+
     const token = this.TokenService.getToken()
-    if(token){
+    if (token) {
       const authRequest = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`)
       })

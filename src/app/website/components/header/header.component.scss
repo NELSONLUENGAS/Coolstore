@@ -25,7 +25,7 @@
             cursor: pointer;
         }
 
-        > a{
+        >a {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -39,7 +39,7 @@
             }
         }
 
-        .shoppingCart{
+        .shoppingCart {
             text-decoration: none;
             color: inherit;
             font-size: 22px;
@@ -72,31 +72,36 @@
         transform: translateX(-100%);
         transition: all ease-in-out .5s;
         padding-top: 2em;
-        > div {
+
+        >div {
             list-style: none;
             font-size: 20px;
             overflow: hidden;
 
-            li{
-                a{
+            li {
+                a {
                     text-decoration: none;
                     color: inherit;
                 }
+
                 padding: .2em 1em;
                 margin-bottom: 5px;
                 width: 100%;
                 cursor: pointer;
                 user-select: none;
+
                 &:hover {
                     background-color: rgb(black, .2);
                 }
-                &.active-side{
+
+                &.active-side {
                     background-color: rgb(black, .2);
                 }
             }
         }
-       
+
     }
+
     & .active {
         transform: translateX(0%);
     }
@@ -128,7 +133,7 @@
         align-items: center;
         margin-right: 10px;
 
-        > a {
+        >a {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -142,23 +147,48 @@
             }
         }
 
-        > div {
+        .header-categories {
             display: flex;
             gap: 15px;
             margin-left: 25px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+
+            &::-webkit-scrollbar {
+                -webkit-appearance: none;
+
+                &:horizontal {
+                    width: 10px;
+                }
+            }
+
+            &::-webkit-scrollbar-button {
+                display: none;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: grey;
+                border-radius: 20px;
+                border: 6px solid white;
+            }
+
             li {
                 list-style: none;
+                padding-bottom: 6px;
             }
 
             a {
                 color: inherit;
                 text-decoration: none;
-                &:hover{
-                   border-bottom: 1px solid #FB8500;
-                   border-bottom-left-radius: 5px;
-                   border-bottom-right-radius: 5px;
+                white-space: nowrap;
+
+                &:hover {
+                    border-bottom: 1px solid #FB8500;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
                 }
-                &.active{
+
+                &.active {
                     padding: 0 .5em;
                     border-bottom: 1px solid #FB8500;
                     border-bottom-left-radius: 5px;
@@ -178,7 +208,7 @@
         }
 
         .shopping-cart {
-            > a {
+            >a {
                 position: relative;
                 text-decoration: none;
                 color: inherit;
@@ -200,11 +230,11 @@
                     left: 0px;
                 }
 
-                &:hover{
+                &:hover {
                     background-color: rgb(#FB8500, .8);
                     padding: 10px;
                     border-radius: 9999px;
-                    
+
                     span {
                         background-color: #fff;
                     }
@@ -226,7 +256,7 @@
 
         >div:nth-child(1) {
 
-            > a{
+            >a {
                 >span {
                     font-size: 35px;
                 }
@@ -236,15 +266,16 @@
 }
 
 /* Medium only */
-@media screen and (min-width: 55em) and (max-width: 63.9em) {
+@media screen and (min-width: 55em) and (max-width: 63.9999em) {
     .show-mobile {
         display: none;
+
         img {
             width: 50px;
         }
 
     }
-    
+
 
     .hide-mobile {
         display: block;
@@ -254,6 +285,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .header-categories {
+            max-width: 45vw;
         }
     }
 }
@@ -268,7 +303,7 @@
     .hide-mobile {
         display: block;
 
-        nav> div {
+        nav>div {
             margin-left: 100px;
         }
 
@@ -277,6 +312,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .header-categories {
+            max-width: 50vw;
         }
 
     }

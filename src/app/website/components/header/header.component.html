@@ -1,3 +1,4 @@
+<p *ngIf="loading$ | async"> Loading... </p>
 <div class="show-mobile">
     <div>
         <button (click)="handleSideMenuOpen()" *ngIf="!sideMenuOpen">
@@ -10,7 +11,7 @@
             <img src="assets/images/CoolStore_1.png" alt="logo">
             <span>CoolStore</span>
         </a>
-        <a class="shoppingCart" href="">
+        <a class="shoppingCart" (click)="onClickedCart()">
             <fa-icon [icon]="faShoppingCart"></fa-icon>
             <span class="badge" *ngIf="counter">{{counter}}</span>
         </a>
@@ -31,7 +32,7 @@
                 <img [width]="60" src="assets/images/CoolStore_1.png" alt="logo">
                 <span>CoolStore</span>
             </a>
-            <div *ngIf="categories?.length">
+            <div *ngIf="categories?.length" class="header-categories">
                 <li><a routerLinkActive="active" routerLink="home">All</a></li>
                 <li *ngFor="let category of categories"><a routerLinkActive="active"
                         [routerLink]="['category', category.id]">{{category.name}}</a></li>
@@ -48,8 +49,8 @@
                 <button *ngIf="!user" (click)="login()">Login</button>
             </div>
             <div class="shopping-cart">
-                <a href="">
-                    <fa-icon [icon]="faShoppingCart"></fa-icon>
+                <a (click)="onClickedCart()">
+                    <fa-icon [icon]=" faShoppingCart"></fa-icon>
                     <span class="badge" *ngIf="counter">{{counter }}</span>
                 </a>
             </div>

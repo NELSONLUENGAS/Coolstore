@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductsService } from 'src/app/services/products.service';
-import SwiperCore, {EffectCards, Thumbs, FreeMode } from 'swiper';
+import SwiperCore, { EffectCards, Thumbs, FreeMode } from 'swiper';
 
 SwiperCore.use([FreeMode, Thumbs, EffectCards]);
 
@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
   thumbsSwiper: any;
 
   id: string | null = ''
-  product : IProduct = {
+  product: IProduct = {
     id: '',
     title: '',
     price: 0,
@@ -32,21 +32,21 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private ProductService: ProductsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap
-    .pipe(
-      switchMap( params => {
-        this.id = params.get('id')
-        return this.id ?  
-          this.ProductService.GetProduct(this.id) 
-          : []
+      .pipe(
+        switchMap(params => {
+          this.id = params.get('id')
+          return this.id ?
+            this.ProductService.GetProduct(this.id)
+            : []
+        })
+      )
+      .subscribe(data => {
+        this.product = data
       })
-    )
-    .subscribe( data => {
-     this.product = data
-    })
   }
 
 }
