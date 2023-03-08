@@ -1,28 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
-import { CategoryService } from 'src/app/services/category.service';
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { Store } from "@ngrx/store";
+import { catchError, EMPTY, exhaustMap, map } from "rxjs";
+import { ProductsService } from "src/app/services/products.service";
+import { AppState } from "../models/state";
 
 @Injectable()
-export class CategoryEffects {
+export class ProductEffects {
 
 
     constructor(
         private actions$: Actions,
-        private categoryService: CategoryService
+        private store: Store<AppState>,
+        private productService: ProductsService
     ) { }
 
-    loadCategories$ = createEffect(() => this.actions$.pipe(
-        ofType('[Products] Loading products'),
-        exhaustMap(() => this.categoryService.GetAll()
+    chooseProduct$ = createEffect(() => this.actions$.pipe(
+        ofType('[Product] Getting Product Chosen'),
+        exhaustMap(({ id }) => this.productService.GetProduct(id)
             .pipe(
-                map(items => ({
-                    type: '[Products] Loaded products',
-                    items,
-                    loading: false
-                })),
-                catchError(() => EMPTY)
+                map(product => {
+                    return {
+                        type: '[Product] Setting Product Chosen',
+                        product
+                    }
+                }),
+                catchError((error) => EMPTY)
             ))
     ));
 }

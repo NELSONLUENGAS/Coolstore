@@ -1,0 +1,23 @@
+<div class="category-wraper">
+    <div class="category-header">
+        <h2>{{item.category}}</h2>
+        <a [routerLink]="['/category', item.id]">
+            <h4>View more</h4>
+        </a>
+    </div>
+    <br>
+    <div class="category-container">
+        <div class="category" *ngFor="let product of item.items.slice(0, 5)">
+            <div class="image" [routerLink]="['/product', product.id]">
+                <img [src]="product.images[0]" alt="">
+            </div>
+            <h3>{{product.title}}</h3>
+            <div class="detail">
+                <h4>{{product.price | currency}}</h4>
+                <button routerLink="." [queryParams]="{product: product.id}">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

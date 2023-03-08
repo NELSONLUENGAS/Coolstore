@@ -15,8 +15,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCER } from './NGRX/models/state';
 import { EffectsModule } from '@ngrx/effects';
-import { CategoryEffects } from './NGRX/effects/product.effect';
+import { CategoryEffects } from './NGRX/effects/category.effect';
 import { CartEffects } from './NGRX/effects/cart.effect';
+import { ProductEffects } from './NGRX/effects/product.effect';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CartEffects } from './NGRX/effects/cart.effect';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([
       CategoryEffects,
-      CartEffects
+      CartEffects,
+      ProductEffects
     ])
   ],
   providers: [

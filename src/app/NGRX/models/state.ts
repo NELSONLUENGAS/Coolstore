@@ -1,20 +1,25 @@
 import { ActionReducerMap } from "@ngrx/store";
 import { cartReducer } from "../reducers/cart.reducer";
 import { detailReducer } from "../reducers/detail.reducer";
-import { productsReducer } from "../reducers/product.reducer";
+import { categoryReducer } from "../reducers/category.reducer";
 import { CartState } from "./cart.model";
 import { DetailState } from "./detail.model";
+import { CategoryState } from "./category.model";
 import { ProductState } from "./product.model";
+import { productReducer } from "../reducers/product.reducer";
 
 
 export interface AppState {
-    products: ProductState
+    categories: CategoryState
     cart: CartState,
     detail: DetailState
+    products: ProductState
 }
 
 export const ROOT_REDUCER: ActionReducerMap<AppState> = {
-    products: productsReducer,
+    categories: categoryReducer,
     cart: cartReducer,
-    detail: detailReducer
+    detail: detailReducer,
+    products: productReducer
+
 }

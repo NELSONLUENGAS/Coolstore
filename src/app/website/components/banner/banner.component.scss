@@ -1,0 +1,25 @@
+.banner-container {
+    padding-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .swiper-image {
+        height: 100%;
+        width: 100%;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            display: block;
+            max-width: 98%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+    }
+}

@@ -8,20 +8,21 @@
             <fa-icon [icon]="faClose"></fa-icon>
         </button>
         <a href="/home">
-            <img src="assets/images/CoolStore_1.png" alt="logo">
+            <img src="assets/images/logo_light.png" alt="logo">
+            <p-divider layout="vertical"></p-divider>
             <span>CoolStore</span>
         </a>
         <a class="shoppingCart" (click)="onClickedCart()">
             <fa-icon [icon]="faShoppingCart"></fa-icon>
-            <span class="badge" *ngIf="counter">{{counter}}</span>
+            <span class="badge" *ngIf="cartQuantity$ | async">{{cartQuantity$ | async}}</span>
         </a>
     </div>
-    <div class="side-menu" [class.active]="sideMenuOpen">
-        <div *ngIf="categories?.length">
-            <li (click)="handleSideMenuOpen()" routerLinkActive="active-side" routerLink="home"><a>All</a></li>
-            <li (click)="handleSideMenuOpen()" [routerLink]="['category', category.id]" routerLinkActive="active-side"
-                *ngFor="let category of categories"><a>{{category.name}}</a></li>
-        </div>
+</div>
+<div class="side-menu" [class.active]="sideMenuOpen">
+    <div *ngIf="categories?.length">
+        <li (click)="handleSideMenuOpen()" routerLinkActive="active-side" routerLink="home"><a>All</a></li>
+        <li (click)="handleSideMenuOpen()" [routerLink]="['category', category.id]" routerLinkActive="active-side"
+            *ngFor="let category of categories"><a>{{category.name}}</a></li>
     </div>
 </div>
 
@@ -29,14 +30,10 @@
     <div>
         <nav>
             <a class="logo" href="/home">
-                <img [width]="60" src="assets/images/CoolStore_1.png" alt="logo">
+                <img [width]="80" src="assets/images/logo_light.png" alt="">
+                <p-divider layout="vertical"></p-divider>
                 <span>CoolStore</span>
             </a>
-            <div *ngIf="categories?.length" class="header-categories">
-                <li><a routerLinkActive="active" routerLink="home">All</a></li>
-                <li *ngFor="let category of categories"><a routerLinkActive="active"
-                        [routerLink]="['category', category.id]">{{category.name}}</a></li>
-            </div>
         </nav>
         <div class="info">
             <div class="account truncate">
@@ -44,14 +41,16 @@
                     <span *ngIf="user">{{user.email}}</span>
                 </a>
                 <button *ngIf="user" (click)="Logout()">
-                    logout
+                    <span>Log out</span>
                 </button>
-                <button *ngIf="!user" (click)="login()">Login</button>
+                <button *ngIf="!user" (click)="login()">
+                    <span>Log in</span>
+                </button>
             </div>
             <div class="shopping-cart">
                 <a (click)="onClickedCart()">
                     <fa-icon [icon]=" faShoppingCart"></fa-icon>
-                    <span class="badge" *ngIf="counter">{{counter }}</span>
+                    <span class="badge" *ngIf="cartQuantity$ | async">{{cartQuantity$ | async}}</span>
                 </a>
             </div>
         </div>
@@ -65,45 +64,17 @@
         </button>
     </div>
     <div class="cart-products-list">
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
+        <li *ngFor="let item of cartItems$ | async" class="cart-product-item">
+            <div><img width="200" [src]="item.images[0]" alt="product-image"></div>
             <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
+                <h4>{{item.title}}</h4>
+                <p>{{ item.price | currency }}</p>
             </div>
         </li>
     </div>
     <div class="cart-footer">
-        <a href="#">
-            <h3>Go to Cart</h3>
+        <a routerLink="my-cart" (click)="closeCart()">
+            <h3>Go to Shopping Cart</h3>
             <button>
                 <fa-icon [icon]="faArrow"></fa-icon>
             </button>

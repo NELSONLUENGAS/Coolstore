@@ -1,15 +1,12 @@
-import { createAction, props } from "@ngrx/store";
-import { ProductModel } from "src/app/core/models/product";
-import { ICategory } from "src/app/models/IProduct";
+import { createAction, props } from "@ngrx/store"
+import { IProduct } from "src/app/models/IProduct"
 
-export const loadProducts = createAction(
-    '[Products] Loading products'
+export const getProductChosen = createAction(
+    '[Product] Getting Product Chosen',
+    props<{ id: string }>()
 )
 
-export const loadedProducts = createAction(
-    '[Products] Loaded products',
-    props<{
-        items: Array<ICategory>,
-        loading: boolean
-    }>()
+export const setProductChosen = createAction(
+    '[Product] Setting Product Chosen',
+    props<{ product: IProduct }>()
 )

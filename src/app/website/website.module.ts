@@ -17,6 +17,10 @@ import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from '../shared/shared.module';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { CartFacadeService } from '../NGRX/facades/cart.facade.service';
+import { PrimengModule } from '../primeNg/primeng/primeng.module';
+import { BannerComponent } from './components/banner/banner.component';
+import { CategoryComponent } from './components/category/category.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 
 @NgModule({
@@ -30,6 +34,9 @@ import { CartFacadeService } from '../NGRX/facades/cart.facade.service';
     ProfileComponent,
     ProductDetailComponent,
     LayoutComponent,
+    BannerComponent,
+    CategoryComponent,
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +45,7 @@ import { CartFacadeService } from '../NGRX/facades/cart.facade.service';
     SwiperModule,
     SharedModule,
     QuicklinkModule,
+    PrimengModule,
   ],
   providers: [
     CartFacadeService

@@ -1,12 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;900&display=swap');
 @import 'swiper/scss';
 @import 'swiper/scss/navigation';
 @import 'swiper/scss/pagination';
 @import './app/website/pages/product-detail/product-detail.component.scss';
 @import './app/shared/components/product-list/product-list.component.scss';
+@import 'primeng/resources/primeng.min.css';
+@import 'primeng/resources/themes/lara-dark-teal/theme.css';
+@import './app/app.component.scss';
 
 * {
     margin: 0;
     font-family: 'Rubik', sans-serif;
+}
+
+:root {
+    --orange-base: #FB8500;
+    --dark: #121212;
 }

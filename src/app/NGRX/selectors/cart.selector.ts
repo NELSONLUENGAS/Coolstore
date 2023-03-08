@@ -8,3 +8,14 @@ export const selectOpenCart = createSelector(
     selectCartState,
     (state: CartState) => state.open
 )
+
+export const selectCart = createSelector(
+    selectCartState,
+    (state: CartState) => state.items
+)
+
+export const selectCartQuantity = createSelector(
+    selectCartState,
+    (state: CartState) => state.quantity
+)
+
