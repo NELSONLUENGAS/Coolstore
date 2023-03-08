@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { openCart } from '../actions/cart.action';
+import { IProduct } from 'src/app/models/IProduct';
+import { addItem, getCartOfCookie, getQuantityItems, openCart } from '../actions/cart.action';
 import { AppState } from '../models/state';
-import { selectOpenCart } from '../selectors/cart.selector';
+import { selectCart, selectCartQuantity, selectOpenCart } from '../selectors/cart.selector';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import { selectOpenCart } from '../selectors/cart.selector';
 export class CartFacadeService {
 
   cartOpen$ = this.store.select(selectOpenCart)
+  cartItems$ = this.store.select(selectCart)
+  cartQunatity$ = this.store.select(selectCartQuantity)
 
   constructor(
     private store: Store<AppState>
@@ -22,4 +25,18 @@ export class CartFacadeService {
   closeCart() {
     this.store.dispatch(openCart({ open: false }))
   }
+
+  addToCart(item: IProduct) {
+    this.store.dispatch(addItem({ item }))
+  }
+
+  setCart() {
+    this.store.dispatch(getCartOfCookie())
+  }
+
+  setCartQuantity() {
+    this.store.dispatch(getQuantityItems())
+  }
+
+
 }

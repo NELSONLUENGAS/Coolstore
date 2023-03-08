@@ -1,60 +1,7 @@
 <div class="products--grid">
-    <app-product [product]="product" *ngFor="let product of products"
-        (addProductToCart)="onAddToShoppingCart($event)"></app-product>
+    <app-product [product]="product" *ngFor="let product of products"></app-product>
 </div>
 
-<!-- <div class="cart-opened" [class.active-cart]="(cartOpened$ | async)">
-    <div class="close-btn">
-        <button (click)="closeCart()">
-            <fa-icon [icon]="faClose"></fa-icon>
-        </button>
-    </div>
-    <div class="cart-products-list">
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-        <li class="cart-product-item">
-            <div><img width="200" src="assets/images/books.jpg" alt="product-image"></div>
-            <div>
-                <h4>Handcrafted Cotton Salad</h4>
-                <p>{{ 199 | currency }}</p>
-            </div>
-        </li>
-    </div>
-    <div class="cart-footer">
-        <a href="#">
-            <h3>Go to Cart</h3>
-            <button>
-                <fa-icon [icon]="faArrow"></fa-icon>
-            </button>
-        </a>
-    </div>
-</div> -->
 
 <div class="product-detail-slide" [class.active]="showProductDetail && !(cartOpened$ | async)">
     <span></span>

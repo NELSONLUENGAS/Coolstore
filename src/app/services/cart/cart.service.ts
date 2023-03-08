@@ -31,6 +31,11 @@ export class CartService {
   }
 
   GetTotal() {
-    return this.myShoppingCart.reduce((sum, item) => sum + item.price, 0)
+    return this.myShoppingCart.reduce((sum, item) => {
+      console.log(sum, 'sumaaa')
+      console.log(item, 'item')
+      return sum + item.price
+
+    }, 0)
   }
 }

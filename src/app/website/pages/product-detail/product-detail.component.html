@@ -1,17 +1,18 @@
 <div class="page-product" *ngIf="product">
+    <div class="goBack">
+        <button (click)="goBack()">
+            <fa-icon [icon]="faBack"></fa-icon>
+            <p>Go Back</p>
+        </button>
+    </div>
     <div class="product-detail">
         <div class="gallery">
-            <swiper
-            class="swiper-image"
-            effect="cards"
-            [thumbs]="{ swiper: thumbsSwiper }" [slidesPerView]="1">
+            <swiper class="swiper-image" effect="slide" [thumbs]="{ swiper: thumbsSwiper }" [slidesPerView]="1">
                 <ng-template swiperSlide *ngFor="let image of product.images">
                     <img [src]="image" alt="detail-Image">
                 </ng-template>
             </swiper>
-            <swiper 
-            class="swiper-thumbs"
-            (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="3" 
+            <swiper class="swiper-thumbs" (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="3"
                 [watchSlidesProgress]="true">
                 <ng-template swiperSlide *ngFor="let image of product.images">
                     <img [src]="image" alt="detail-Image">

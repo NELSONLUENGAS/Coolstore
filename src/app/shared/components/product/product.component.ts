@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { faCartPlus, faEye } from '@fortawesome/free-solid-svg-icons';
+import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
 
 @Component({
   selector: 'app-product',
@@ -21,13 +22,15 @@ export class ProductComponent {
     images: []
   }
 
-  @Output() addProductToCart = new EventEmitter<IProduct>()
-
   faAddShoppingCart = faCartPlus
   faEye = faEye
 
+  constructor(
+    private cartFacade: CartFacadeService
+  ) { }
 
   handleAddToShoppingCart() {
-    this.addProductToCart.emit(this.product)
+    this.cartFacade.addToCart(this.product)
   }
+
 }

@@ -1,1 +1,97 @@
-<p>my-cart works!</p>
+<div class="order-container">
+    <div class="order-items">
+        <div class="order-title">
+            <h1>Shopping Cart</h1>
+            <h3>{{cartItemsQuantity$ | async}} Items</h3>
+        </div>
+        <hr>
+        <br>
+        <div class="cart-table">
+            <p-table styleClass="table" *ngIf="cartItems.length" [value]="cartItems" [scrollable]="true"
+                scrollHeight="440px">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total price</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>
+                            <div class="table-product">
+                                <div class="table-product-image">
+                                    <img [width]="200" [src]="item.images[0]" alt="">
+                                </div>
+                                <div class="table-product-details">
+                                    <h4>{{item.category.name}}</h4>
+                                    <h2>{{item.title}}</h2>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <button>-</button>
+                                <input type="number" [value]="item.quantity">
+                                <button>+</button>
+                            </div>
+                        </td>
+                        <td>{{item.price | currency}}</td>
+                        <td>{{(item.price * item.quantity) | currency}}</td>
+                        <td>
+                            <button>
+                                <fa-icon [icon]="faBasket"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <!-- <table>
+            <thead>
+                <tr>
+                    <th colspan="3">Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cartItems$ | async">
+                    <td colspan="3">
+                        <div class="table-product">
+                            <div class="table-product-image">
+                                <img [src]="item.images[0]" alt="">
+                            </div>
+                            <div class="table-product-details">
+                                <h4>{{item.category.name}}</h4>
+                                <h2>{{item.title}}</h2>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <button>-</button>
+                            <input type="number" [value]="item.quantity">
+                            <button>+</button>
+                        </div>
+                    </td>
+                    <td>{{item.price | currency}}</td>
+                    <td>{{(item.price * item.quantity) | currency}}</td>
+                    <td>
+                        <button>
+                            <fa-icon [icon]="faBasket"></fa-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+    <div class="order-summary">
+        Sumarry
+    </div>
+</div>

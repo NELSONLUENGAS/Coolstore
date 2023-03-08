@@ -1,5 +1,8 @@
+import { ICartProduct } from "src/app/models/IProduct"
+
 export interface CartState {
     open: boolean
-    items?: []
-    totalPrice?: number
+    items: Array<ICartProduct>
+    amount: number
+    quantity: number
 }

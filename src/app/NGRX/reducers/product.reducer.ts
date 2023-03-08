@@ -1,27 +1,28 @@
-import { createReducer, on } from "@ngrx/store";
-import { loadedProducts, loadProducts } from "../actions/product.action";
-import { ProductState } from "../models/product.model";
-
+import { createReducer, on } from "@ngrx/store"
+import { setProductChosen } from "../actions/product.action"
+import { ProductState } from "../models/product.model"
 
 
 export const initialState: ProductState = {
-    loading: false,
-    items: []
+    productChosen: {
+        id: '',
+        title: '',
+        price: 0,
+        description: '',
+        category: {
+            id: '',
+            name: ''
+        },
+        images: []
+    }
 }
 
-export const productsReducer = createReducer(
+export const productReducer = createReducer(
     initialState,
-    on(loadProducts, (state) => {
+    on(setProductChosen, (state, { product }) => {
         return {
             ...state,
-            loading: true
+            productChosen: product
         }
     }),
-    on(loadedProducts, (state, { items, loading }) => {
-        return {
-            ...state,
-            items,
-            loading
-        }
-    })
 )

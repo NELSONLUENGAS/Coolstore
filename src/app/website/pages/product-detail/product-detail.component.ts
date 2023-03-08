@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductsService } from 'src/app/services/products.service';
-import SwiperCore, { EffectCards, Thumbs, FreeMode } from 'swiper';
+import SwiperCore, { Thumbs, EffectCube } from 'swiper';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '@angular/common';
 
-SwiperCore.use([FreeMode, Thumbs, EffectCards]);
+SwiperCore.use([Thumbs, EffectCube]);
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +17,7 @@ SwiperCore.use([FreeMode, Thumbs, EffectCards]);
 export class ProductDetailComponent implements OnInit {
 
   thumbsSwiper: any;
+  faBack = faArrowLeft
 
   id: string | null = ''
   product: IProduct = {
@@ -31,7 +34,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ProductService: ProductsService
+    private ProductService: ProductsService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -49,4 +53,7 @@ export class ProductDetailComponent implements OnInit {
       })
   }
 
+  goBack() {
+    this.location.back()
+  }
 }

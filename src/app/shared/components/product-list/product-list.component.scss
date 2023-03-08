@@ -18,13 +18,16 @@ $medium: 64em;
     top: 55px;
     right: 0;
     bottom: 0;
-    background-color: #FB8500;
+    background-color: var(--cyan-100);
     transform: translateX(100%);
     transition: all ease-in-out .3s;
     width: 100%;
+    z-index: 2;
 
     .product-detail-container {
         padding: 15px;
+        height: 100%;
+        position: relative;
 
         .detail-button {
             position: absolute;
@@ -32,16 +35,19 @@ $medium: 64em;
             right: 10px;
 
             button {
-                color: #fff;
+                color: var(--cyan-800);
                 background-color: transparent;
                 border: none;
                 font-size: 25px;
+                cursor: pointer
             }
         }
 
         h1 {
             font-size: 30px;
             padding-bottom: 10px;
+            padding-right: 28px;
+            color: var(--primary-color-text);
         }
 
         .swiper-slide img {
@@ -56,13 +62,14 @@ $medium: 64em;
             flex-direction: column;
 
             .detail-swiper {
-                max-height: 400px;
+                max-height: 360px;
                 padding-bottom: 10px;
 
                 .swiper-detail {}
             }
 
             .detail-description {
+                color: var(--primary-color-text);
                 padding: 10px 0;
                 line-height: 20px;
                 display: flex;
@@ -73,11 +80,13 @@ $medium: 64em;
         }
 
         .detail-more {
+            background-color: var(--cyan-100);
             width: calc(100% - 30px);
             display: flex;
             justify-content: space-between;
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
+            z-index: 1;
 
             button {
                 background-color: #000;
@@ -87,6 +96,7 @@ $medium: 64em;
                 font-size: 16px;
                 font-weight: 600;
                 padding: 8px;
+                cursor: pointer;
             }
         }
     }
