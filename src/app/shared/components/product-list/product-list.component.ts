@@ -2,11 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ICreateProduct, IProduct, IUpdateProduct } from 'src/app/models/IProduct'
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
-import { faTimesCircle, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { switchMap } from 'rxjs';
 import SwiperCore, { Pagination } from 'swiper';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
+import { NavFacadeService } from 'src/app/NGRX/facades/nav.facade.service';
+import { DetailFacadeService } from 'src/app/NGRX/facades/detail.facade.service';
+import { Location } from '@angular/common';
 
 
 
@@ -29,8 +32,7 @@ export class ProductListComponent implements OnInit {
   totalShoppingCart = 0
   faClose = faTimesCircle
   faArrow = faArrowRight
-  showProductDetail = false
-  cartOpened = false
+  faBack = faArrowLeft
 
   productChosen: IProduct = {
     id: '',
@@ -44,20 +46,30 @@ export class ProductListComponent implements OnInit {
     images: []
   }
 
-  cartOpened$ = this.cartFacade.cartOpen$
+  showProductDetail$ = this.detailFacade.detailOpened$
 
   constructor(
     private StoreService: StoreService,
     private ProductsService: ProductsService,
-    private CartService: CartService,
-    private cartFacade: CartFacadeService
+    // private CartService: CartService,
+    // private cartFacade: CartFacadeService,
+    // private navFacade: NavFacadeService,
+    private detailFacade: DetailFacadeService,
   ) {
     this.myShoppingCart = this.StoreService.GetShoppingCart()
   }
 
   ngOnInit(): void {
-    this.CartService.CartOpened$
-      .subscribe(bool => this.cartOpened = bool)
+    // this.CartService.CartOpened$
+    //   .pipe(
+    //     switchMap((bool) => {
+    //       this.cartOpened = bool
+    //       return this.navFacade.sidebarOpened$
+    //     })
+    //   )
+    //   .subscribe(bool => {
+    //     this.sidebarOpen = bool
+    //   })
   }
   onAddToShoppingCart(product: IProduct) {
     this.StoreService.AddToCart(product)
@@ -65,11 +77,11 @@ export class ProductListComponent implements OnInit {
   }
 
   onShowProductDetail() {
-    !this.cartOpened ? this.showProductDetail = true : this.showProductDetail = false
+    this.detailFacade.openDetail()
   }
 
   onHideProductDetail() {
-    this.showProductDetail = false
+    this.detailFacade.closeDetail()
   }
 
   onShowDetail(id: string) {

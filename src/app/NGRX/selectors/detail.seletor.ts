@@ -4,7 +4,7 @@ import { AppState } from "../models/state";
 
 export const selectDeatilState = (state: AppState) => state.detail
 
-export const selectOpenDeatil = createSelector(
+export const selectOpenDetail = createSelector(
     selectDeatilState,
     (state: DetailState) => state.open
 )

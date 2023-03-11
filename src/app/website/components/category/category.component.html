@@ -1,4 +1,4 @@
-<div class="category-wraper">
+<div class="category-wraper" *ngIf="item.items.length">
     <div class="category-header">
         <h2>{{item.category}}</h2>
         <a [routerLink]="['/category', item.id]">
@@ -14,7 +14,7 @@
             <h3>{{product.title}}</h3>
             <div class="detail">
                 <h4>{{product.price | currency}}</h4>
-                <button routerLink="." [queryParams]="{product: product.id}">
+                <button (click)="showDetail()" routerLink="." [queryParams]="{product: product.id}">
                     <fa-icon [icon]="faEye"></fa-icon>
                 </button>
             </div>

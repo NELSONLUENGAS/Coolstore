@@ -1,12 +1,20 @@
 <div class="order-container">
     <div class="order-items">
+        <div class="cart-back">
+            <a routerLink="/home">
+                <button>
+                    <fa-icon [icon]="faBack"></fa-icon>
+                </button>
+                <h3>Cotinue shopping</h3>
+            </a>
+        </div>
         <div class="order-title">
             <h1>Shopping Cart</h1>
-            <h3>{{cartItemsQuantity$ | async}} Items</h3>
+            <h3>{{cartItemsQuantity$ | async}} {{(cartItemsQuantity$ | async) === 1 ? 'Item' : 'Items'}}</h3>
         </div>
         <hr>
         <br>
-        <div class="cart-table">
+        <div class="cart-hide-mobile cart-table">
             <p-table styleClass="table" *ngIf="cartItems.length" [value]="cartItems" [scrollable]="true"
                 scrollHeight="440px">
                 <ng-template pTemplate="header">
@@ -49,49 +57,104 @@
                 </ng-template>
             </p-table>
         </div>
-
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th colspan="3">Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of cartItems$ | async">
-                    <td colspan="3">
-                        <div class="table-product">
-                            <div class="table-product-image">
-                                <img [src]="item.images[0]" alt="">
-                            </div>
-                            <div class="table-product-details">
-                                <h4>{{item.category.name}}</h4>
-                                <h2>{{item.title}}</h2>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
+        <div class="cart-show-mobile">
+            <div class="cart-show-mobile-container">
+                <div class="cart-items">
+                    <ng-template #cartEmpty>
                         <div>
-                            <button>-</button>
-                            <input type="number" [value]="item.quantity">
-                            <button>+</button>
+                            <h1>Cart Empty</h1>
                         </div>
-                    </td>
-                    <td>{{item.price | currency}}</td>
-                    <td>{{(item.price * item.quantity) | currency}}</td>
-                    <td>
-                        <button>
-                            <fa-icon [icon]="faBasket"></fa-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table> -->
-    </div>
-    <div class="order-summary">
-        Sumarry
+                    </ng-template>
+                    <ng-container *ngIf="cartItems.length else cartEmpty">
+                        <li *ngFor="let item of cartItems" class="cart-item">
+                            <div class="cart-item-container">
+                                <div class="cart-image">
+                                    <img [src]="item.images[0]" alt="">
+                                </div>
+                                <div class="cart-item-detail">
+                                    <div class="cart-item-title">
+                                        <h2>{{item.title}}</h2>
+                                        <p>{{item.price | currency}}</p>
+                                    </div>
+                                    <div class="cart-item-actions">
+                                        <div class="cart-item-quantity">
+                                            <button [disabled]="item.quantity === 1"
+                                                (click)="decreaseItem(item.id)">-</button>
+                                            <span>{{item.quantity}}</span>
+                                            <button (click)="increaseItem(item.id)">+</button>
+                                        </div>
+                                    </div>
+                                    <p-toast position="bottom-center" key="c" (onClose)="onReject()"
+                                        [baseZIndex]="5000">
+                                        <ng-template let-message pTemplate="message">
+                                            <div class=" toast-message flex " style="flex: 1">
+                                                <div class="text-center">
+                                                    <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                                                    <h4>{{message.summary}}</h4>
+                                                    <p>{{message.detail}}</p>
+                                                </div>
+                                                <div class="grid p-fluid">
+                                                    <div class="col-6">
+                                                        <button type="button" pButton (click)="onConfirm(item.id)"
+                                                            label="Yes" class="p-button-success"></button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button type="button" pButton (click)="onReject()" label="No"
+                                                            class="p-button-secondary"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </p-toast>
+                                    <div class="cart-item-delete">
+                                        <button (click)="showConfirm()">
+                                            <fa-icon [icon]="faBasket"></fa-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ng-container>
+                </div>
+                <div class="cart-checkout-info">
+                    <div class="cart-delivery">
+                        <h2>Delivery Location</h2>
+                        <br>
+                        <div>
+                            <p>Direccion </p>
+                        </div>
+                    </div>
+                    <div class="cart-payment">
+                        <h2>Payment Method</h2>
+                        <br>
+                        <div>
+                            <p>Visa classic </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="cart-order-info">
+                        <div>
+                            <span>Subtotal</span>
+                            <span>{{cartAmount$ | async | currency}}</span>
+                        </div>
+                        <hr>
+                        <div>
+                            <span>Shopping Cost</span>
+                            <span class="cart-free">Free</span>
+                        </div>
+                        <hr>
+                        <div>
+                            <span>Total</span>
+                            <h3>{{cartAmount$ | async | currency}}</h3>
+                        </div>
+                        <div class="checkout">
+                            <button>
+                                <span>Checkout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -89,6 +89,7 @@
     padding-top: 2em;
     z-index: 2;
     color: var(--primary-color-text);
+    width: 200px;
 
     >div {
         list-style: none;
@@ -396,6 +397,10 @@
 
     }
 
+    .side-menu {
+        display: none;
+    }
+
 
     .hide-mobile {
         display: block;
@@ -430,6 +435,9 @@
         display: none;
     }
 
+    .side-menu {
+        display: none;
+    }
 
     .hide-mobile {
         display: block;
