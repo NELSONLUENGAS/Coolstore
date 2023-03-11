@@ -1,5 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -18,6 +19,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoryEffects } from './NGRX/effects/category.effect';
 import { CartEffects } from './NGRX/effects/cart.effect';
 import { ProductEffects } from './NGRX/effects/product.effect';
+import { NavEffects } from './NGRX/effects/nav.effect';
+import { DetailEffects } from './NGRX/effects/detail.effect';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { ProductEffects } from './NGRX/effects/product.effect';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -36,7 +40,9 @@ import { ProductEffects } from './NGRX/effects/product.effect';
     EffectsModule.forRoot([
       CategoryEffects,
       CartEffects,
-      ProductEffects
+      ProductEffects,
+      NavEffects,
+      DetailEffects,
     ])
   ],
   providers: [

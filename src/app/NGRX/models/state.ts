@@ -7,6 +7,8 @@ import { DetailState } from "./detail.model";
 import { CategoryState } from "./category.model";
 import { ProductState } from "./product.model";
 import { productReducer } from "../reducers/product.reducer";
+import { NavState } from "./nav.model";
+import { navReducer } from "../reducers/nav.reducer";
 
 
 export interface AppState {
@@ -14,12 +16,14 @@ export interface AppState {
     cart: CartState,
     detail: DetailState
     products: ProductState
+    nav: NavState
 }
 
 export const ROOT_REDUCER: ActionReducerMap<AppState> = {
     categories: categoryReducer,
     cart: cartReducer,
     detail: detailReducer,
-    products: productReducer
+    products: productReducer,
+    nav: navReducer
 
 }

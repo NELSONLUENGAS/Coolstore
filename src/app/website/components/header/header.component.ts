@@ -1,18 +1,20 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowRight, faBarsStaggered, faShoppingCart, faStore, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
 import { Observable, switchMap } from 'rxjs';
-import { ICategory } from 'src/app/models/IProduct';
+import { ICartProduct, ICategory } from 'src/app/models/IProduct';
 import { IUser } from 'src/app/models/IUsers';
-import { loadCategories } from 'src/app/NGRX/actions/category.action';
 import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
 import { CategoryFacadeService } from 'src/app/NGRX/facades/category.facade.service';
+import { DetailFacadeService } from 'src/app/NGRX/facades/detail.facade.service';
+import { NavFacadeService } from 'src/app/NGRX/facades/nav.facade.service';
 import { AppState } from 'src/app/NGRX/models/state';
-import { selectCategoryLoading } from 'src/app/NGRX/selectors/category.selector';
+import { selectCategoryList, selectCategoryLoading } from 'src/app/NGRX/selectors/category.selector';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { StoreService } from 'src/app/services/store.service';
+
 
 @Component({
   selector: 'app-header',
@@ -25,7 +27,6 @@ export class HeaderComponent implements OnInit {
   faBars = faBarsStaggered;
   faShoppingCart = faShoppingCart
   faClose = faTimes
-  categories: ICategory[] | null = null
 
   counter = 0
   sideMenuOpen = false
@@ -33,6 +34,8 @@ export class HeaderComponent implements OnInit {
   faCloseCircle = faTimesCircle
   faArrow = faArrowRight
   faStore = faStore
+  currentRoute = ""
+  cartItems: ICartProduct[] = []
 
 
   constructor(
@@ -41,13 +44,19 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private store: Store<AppState>,
     private cartFacade: CartFacadeService,
-    private categoryFacade: CategoryFacadeService
+    private categoryFacade: CategoryFacadeService,
+    private navFacade: NavFacadeService,
+    private detailFacade: DetailFacadeService,
+    private location: Location
   ) { }
 
   loading$: Observable<boolean> = new Observable()
   cartOpened$ = this.cartFacade.cartOpen$
   cartItems$ = this.cartFacade.cartItems$
-  cartQuantity$ = this.cartFacade.cartQunatity$
+  cartQuantity$ = this.cartFacade.cartQuantity$
+  sidebarOpened$ = this.navFacade.sidebarOpened$
+  categories$ = this.categoryFacade.getCategories$
+  category$ = this.store.select(selectCategoryList)
 
 
   ngOnInit(): void {
@@ -60,20 +69,36 @@ export class HeaderComponent implements OnInit {
       .pipe(
         switchMap((user) => {
           this.user = user
-          return this.CategoryService.GetAll()
+          return this.router.events
+        }),
+        switchMap(() => {
+          const pathname = this.location.path().split('?')
+          this.currentRoute = pathname[0]
+          return this.category$
+        }),
+        switchMap(() => {
+          return this.cartItems$
         })
       )
-      .subscribe(categories => {
-        this.categories = categories
-      })
+      .subscribe(
+        (cart) => this.cartItems = cart
+      )
   }
 
   handleSideMenuOpen() {
-    this.sideMenuOpen = !this.sideMenuOpen
+    this.navFacade.openSidebar()
+    this.cartFacade.closeCart()
+    this.detailFacade.closeDetail()
+  }
+
+  handleSideMenuClose() {
+    this.navFacade.closeSidebar()
   }
 
   onClickedCart() {
     this.cartFacade.openCart()
+    this.navFacade.closeSidebar()
+    this.detailFacade.closeDetail()
   }
 
   closeCart() {

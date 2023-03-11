@@ -1,35 +1,38 @@
 <p *ngIf="loading$ | async"> Loading... </p>
 <div class="show-mobile">
     <div>
-        <button (click)="handleSideMenuOpen()" *ngIf="!sideMenuOpen">
+        <button [routerLink]="currentRoute" [queryParams]="{}" (click)="handleSideMenuOpen()"
+            *ngIf="!(sidebarOpened$ | async)">
             <fa-icon [icon]="faBars"></fa-icon>
         </button>
-        <button (click)="handleSideMenuOpen()" *ngIf="sideMenuOpen">
+        <button [routerLink]="currentRoute" [queryParams]="{}" (click)="handleSideMenuClose()"
+            *ngIf="sidebarOpened$ | async">
             <fa-icon [icon]="faClose"></fa-icon>
         </button>
-        <a href="/home">
+        <a routerLink="/home">
             <img src="assets/images/logo_light.png" alt="logo">
             <p-divider layout="vertical"></p-divider>
             <span>CoolStore</span>
         </a>
-        <a class="shoppingCart" (click)="onClickedCart()">
+        <a class="shoppingCart" [routerLink]="currentRoute" [queryParams]="{}" (click)="onClickedCart()">
             <fa-icon [icon]="faShoppingCart"></fa-icon>
             <span class="badge" *ngIf="cartQuantity$ | async">{{cartQuantity$ | async}}</span>
         </a>
     </div>
 </div>
-<div class="side-menu" [class.active]="sideMenuOpen">
-    <div *ngIf="categories?.length">
-        <li (click)="handleSideMenuOpen()" routerLinkActive="active-side" routerLink="home"><a>All</a></li>
-        <li (click)="handleSideMenuOpen()" [routerLink]="['category', category.id]" routerLinkActive="active-side"
-            *ngFor="let category of categories"><a>{{category.name}}</a></li>
+<div class="side-menu" [class.active]="sidebarOpened$ | async">
+    <div *ngIf="categories$ | async">
+        <ng-container *ngFor="let category of categories$ | async">
+            <li *ngIf="category.items.length" (click)="handleSideMenuClose()" [routerLink]="['category', category.id]"
+                routerLinkActive="active-side"><a>{{category.category}}</a></li>
+        </ng-container>
     </div>
 </div>
 
 <div class="hide-mobile">
     <div>
         <nav>
-            <a class="logo" href="/home">
+            <a class="logo" routerLink="/home">
                 <img [width]="80" src="assets/images/logo_light.png" alt="">
                 <p-divider layout="vertical"></p-divider>
                 <span>CoolStore</span>
@@ -48,7 +51,7 @@
                 </button>
             </div>
             <div class="shopping-cart">
-                <a (click)="onClickedCart()">
+                <a [routerLink]="currentRoute" [queryParams]="{}" (click)="onClickedCart()">
                     <fa-icon [icon]=" faShoppingCart"></fa-icon>
                     <span class="badge" *ngIf="cartQuantity$ | async">{{cartQuantity$ | async}}</span>
                 </a>
@@ -59,7 +62,7 @@
 
 <div class="cart-opened" [class.active-cart]="(cartOpened$ | async)">
     <div class="close-btn">
-        <button (click)="closeCart()">
+        <button [routerLink]="currentRoute" [queryParams]="{}" (click)="closeCart()">
             <fa-icon [icon]="faCloseCircle"></fa-icon>
         </button>
     </div>

@@ -8,7 +8,7 @@
     </div>
     <div class="product-footer">
         <a routerLink="." [queryParams]="{product: product.id}">
-            <button>
+            <button (click)="showDetail()">
                 <fa-icon [icon]="faEye"></fa-icon>
             </button>
         </a>

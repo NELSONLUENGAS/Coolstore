@@ -63,8 +63,8 @@ export const cartReducer = createReducer(
         }
     }),
     on(removeItem, (state, { id }) => {
-        let newState = state.items
-        newState.filter(el => el.id !== id)
+        let currentState = [...state.items]
+        const newState = currentState.filter(el => el.id !== id)
 
         return {
             ...state,
@@ -72,45 +72,40 @@ export const cartReducer = createReducer(
         }
     }),
     on(increaseItem, (state, { id }) => {
-        let increaseProduct = state.items[state.items.findIndex(el => Number(el.id) === Number(id))]
+        let currentState = [...state.items]
+        let increaseProduct = { ...currentState[currentState.findIndex(el => Number(el.id) === Number(id))] }
         increaseProduct.quantity += 1
-        state.items[state.items.findIndex(el => Number(el.id) === Number(id))] = increaseProduct
+        currentState[currentState.findIndex(el => Number(el.id) === Number(id))] = increaseProduct
 
         return {
-            ...state
+            ...state,
+            items: currentState
         }
     }),
     on(decreaseItem, (state, { id }) => {
-        let decreaseProduct = state.items[state.items.findIndex(el => Number(el.id) === Number(id))]
-        if (decreaseProduct.quantity > 1) {
-            decreaseProduct.quantity -= 1
-            state.items[state.items.findIndex(el => Number(el.id) === Number(id))] = decreaseProduct
-        }
+        let currentState = [...state.items]
+        let increaseProduct = { ...currentState[currentState.findIndex(el => Number(el.id) === Number(id))] }
+        increaseProduct.quantity -= 1
+        currentState[currentState.findIndex(el => Number(el.id) === Number(id))] = increaseProduct
+
         return {
-            ...state
+            ...state,
+            items: currentState
         }
     }),
     on(setQuantityItems, (state, { quantity }) => {
-        return quantity > 0 ?
-            {
-                ...state,
-                quantity
-            }
-            :
-            {
-                ...state,
-            }
+
+        return {
+            ...state,
+            quantity
+        }
+
     }),
     on(setAmount, (state, { amount }) => {
-        return amount > 0 ?
-            {
-                ...state,
-                amount
-            }
-            :
-            {
-                ...state,
-            }
+        return {
+            ...state,
+            amount
+        }
     }),
 )
 

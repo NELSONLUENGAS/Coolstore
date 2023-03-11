@@ -1,5 +1,5 @@
 <app-category *ngFor="let item of productsByCategory$ | async" [category]="item"></app-category>
-<div class="product-detail-slide" [class.active]="showProductDetail && !(cartOpened$ | async)">
+<div class="product-detail-slide" [class.active]="showProductDetail$ | async">
     <span></span>
     <div *ngIf="productChosen" class="product-detail-container">
         <div class="detail-button">

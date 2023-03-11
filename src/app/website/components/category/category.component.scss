@@ -17,7 +17,26 @@
         background-color: var(--maskbg);
         border-radius: 15px;
         gap: 25px;
-        overflow-x: scroll;
+        overflow-y: hidden;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+
+            &:horizontal {
+                width: 12px;
+            }
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--surface-900);
+            border-radius: 20px;
+            border: 6px solid var(--dark);
+        }
 
         .category {
             border-radius: 10px;

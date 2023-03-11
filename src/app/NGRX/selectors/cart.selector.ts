@@ -19,3 +19,8 @@ export const selectCartQuantity = createSelector(
     (state: CartState) => state.quantity
 )
 
+export const selectCartAmount = createSelector(
+    selectCartState,
+    (state: CartState) => state.amount
+)
+

@@ -3,8 +3,7 @@
 </div>
 
 
-<div class="product-detail-slide" [class.active]="showProductDetail && !(cartOpened$ | async)">
-    <span></span>
+<div class="product-detail-slide" [class.active]="showProductDetail$ | async">
     <div *ngIf=" productChosen" class="product-detail-container">
         <div class="detail-button">
             <button routerLink="." [queryParams]="{}" (click)="onHideProductDetail()">
