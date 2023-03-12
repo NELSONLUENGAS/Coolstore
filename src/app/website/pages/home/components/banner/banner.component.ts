@@ -9,4 +9,5 @@ SwiperCore.use([Autoplay]);
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent {
+
 }

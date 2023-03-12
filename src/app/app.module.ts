@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -26,7 +25,6 @@ import { DetailEffects } from './NGRX/effects/detail.effect';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
   ],
   imports: [
     BrowserModule,

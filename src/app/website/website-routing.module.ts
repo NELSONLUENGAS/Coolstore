@@ -1,17 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './pages/layout/layout.component';
-import { LoginComponent } from './pages/login/login.component';
-import { MyCartComponent } from './pages/my-cart/my-cart.component';
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RecoveryComponent } from './pages/recovery/recovery.component';
-import { RegisterComponent } from './pages/register/register.component';
-
-import { AuthGuard } from '../guards/auth.guard';
-import { ExitGuard } from '../guards/exit.guard';
 
 const routes: Routes = [
   {
@@ -25,40 +15,23 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: HomeComponent
+        loadChildren: () => import('./pages/home/home.module').then(module => module.HomeModule)
       },
       {
         path: 'category',
         loadChildren: () => import('./pages/category/category.module').then(module => module.CategoryModule),
-        data: {
-          preload: true
-        }
       },
       {
-        path: 'product/:id',
-        component: ProductDetailComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
+        path: 'product',
+        loadChildren: () => import('./pages/product-detail/product-detail.module').then(module => module.ProductDetailModule)
       },
       {
         path: 'my-cart',
-        component: MyCartComponent
+        loadChildren: () => import('./pages/my-cart/my-cart.module').then(module => module.MyCartModule)
       },
       {
         path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'recovery',
-        component: RecoveryComponent
-      },
-      {
-        path: 'register',
-        canDeactivate: [ExitGuard],
-        component: RegisterComponent,
+        loadChildren: () => import('./pages/profile/profile.module').then(module => module.ProfileModule)
       },
     ]
   },

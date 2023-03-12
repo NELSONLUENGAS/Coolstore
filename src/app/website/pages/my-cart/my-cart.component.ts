@@ -12,6 +12,7 @@ import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
 export class MyCartComponent implements OnInit {
 
   cartItems: ICartProduct[] = []
+  idSelected = ''
   //Observables
   cartItemsQuantity$ = this.cartFacade.cartQuantity$
   cartAmount$ = this.cartFacade.cartAmount$
@@ -41,13 +42,14 @@ export class MyCartComponent implements OnInit {
     this.cartFacade.setCart()
   }
 
-  showConfirm() {
+  showConfirm(id: string) {
+    this.idSelected = id
     this.messageService.clear();
     this.messageService.add({ key: 'c', sticky: true, severity: 'warn', summary: 'Are you sure?', detail: 'Confirm to proceed' });
   }
 
-  onConfirm(id: string) {
-    this.cartFacade.removeItem(id)
+  onConfirm() {
+    this.cartFacade.removeItem(this.idSelected)
     this.cartFacade.setCart()
     this.messageService.clear('c');
   }

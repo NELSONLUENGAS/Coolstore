@@ -13,6 +13,7 @@ import { ProductByCategory } from 'src/app/NGRX/models/category.model';
 })
 export class CategoryComponent {
 
+
   item: ProductByCategory = {
     category: '',
     id: '',

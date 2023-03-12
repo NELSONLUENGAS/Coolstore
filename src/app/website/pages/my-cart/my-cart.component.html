@@ -14,49 +14,6 @@
         </div>
         <hr>
         <br>
-        <div class="cart-hide-mobile cart-table">
-            <p-table styleClass="table" *ngIf="cartItems.length" [value]="cartItems" [scrollable]="true"
-                scrollHeight="440px">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total price</th>
-                        <th></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-item>
-                    <tr>
-                        <td>
-                            <div class="table-product">
-                                <div class="table-product-image">
-                                    <img [width]="200" [src]="item.images[0]" alt="">
-                                </div>
-                                <div class="table-product-details">
-                                    <h4>{{item.category.name}}</h4>
-                                    <h2>{{item.title}}</h2>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <button>-</button>
-                                <input type="number" [value]="item.quantity">
-                                <button>+</button>
-                            </div>
-                        </td>
-                        <td>{{item.price | currency}}</td>
-                        <td>{{(item.price * item.quantity) | currency}}</td>
-                        <td>
-                            <button>
-                                <fa-icon [icon]="faBasket"></fa-icon>
-                            </button>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
         <div class="cart-show-mobile">
             <div class="cart-show-mobile-container">
                 <div class="cart-items">
@@ -95,8 +52,8 @@
                                                 </div>
                                                 <div class="grid p-fluid">
                                                     <div class="col-6">
-                                                        <button type="button" pButton (click)="onConfirm(item.id)"
-                                                            label="Yes" class="p-button-success"></button>
+                                                        <button type="button" pButton (click)="onConfirm()" label="Yes"
+                                                            class="p-button-success"></button>
                                                     </div>
                                                     <div class="col-6">
                                                         <button type="button" pButton (click)="onReject()" label="No"
@@ -107,7 +64,7 @@
                                         </ng-template>
                                     </p-toast>
                                     <div class="cart-item-delete">
-                                        <button (click)="showConfirm()">
+                                        <button (click)="showConfirm(item.id)">
                                             <fa-icon [icon]="faBasket"></fa-icon>
                                         </button>
                                     </div>
