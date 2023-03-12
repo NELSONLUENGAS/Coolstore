@@ -34,7 +34,7 @@ import { DetailEffects } from './NGRX/effects/detail.effect';
     HttpClientModule,
     QuicklinkModule,
     StoreModule.forRoot(ROOT_REDUCER),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: isDevMode() }),
     EffectsModule.forRoot([
       CategoryEffects,
       CartEffects,
