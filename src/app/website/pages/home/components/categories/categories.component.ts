@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { map, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { IProduct } from 'src/app/models/IProduct';
-import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
 import { CategoryFacadeService } from 'src/app/NGRX/facades/category.facade.service';
 import { DetailFacadeService } from 'src/app/NGRX/facades/detail.facade.service';
 import { ProductFacadeService } from 'src/app/NGRX/facades/product.facade.service';
@@ -16,7 +15,7 @@ import { selectCategoryList, selectProductsByCategory, selectProductsByCategoryL
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
   @Input()
   set productId(id: string | null) {

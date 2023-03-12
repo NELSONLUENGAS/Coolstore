@@ -2,12 +2,12 @@ $small: 40em;
 $small-max: 63.9em;
 $medium: 64em;
 
-.not-found{
+.not-found {
     padding-top: 65px;
     display: flex;
     flex-direction: column;
 
-    .image{
+    .image {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -18,17 +18,18 @@ $medium: 64em;
         }
     }
 
-    .text{
+    .text {
         display: flex;
         align-items: center;
         justify-content: center;
         padding-top: 30px;
 
-        h1{
+        h1 {
             font-size: 70px;
             text-align: center;
         }
-        h3{
+
+        h3 {
             padding: 20px;
             font-size: 25px;
             text-align: center;
@@ -37,33 +38,34 @@ $medium: 64em;
 }
 
 @media screen and (min-width: $small) and (max-width: $small-max) {
-    .not-found{
+    .not-found {
         padding-top: 65px;
         display: flex;
         flex-direction: column;
-    
-        .image{
+
+        .image {
             display: flex;
             align-items: center;
             justify-content: center;
             padding-top: 30px;
-    
+
             img {
                 width: 300px;
             }
         }
-    
-        .text{
+
+        .text {
             display: flex;
             align-items: center;
             justify-content: center;
             padding-top: 30px;
-    
-            h1{
+
+            h1 {
                 font-size: 70px;
                 text-align: center;
             }
-            h3{
+
+            h3 {
                 padding: 20px;
                 font-size: 25px;
                 text-align: center;
@@ -74,36 +76,37 @@ $medium: 64em;
 
 //web
 @media screen and (min-width: $medium) {
-    .not-found{
+    .not-found {
         padding-top: 75px;
-        display: flex; 
+        display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-    
-        .image{
+
+        .image {
             display: flex;
             align-items: center;
             justify-content: center;
             height: calc(100vh - 115px);
             padding: 20px;
-    
+
             img {
                 width: 350px;
             }
         }
-    
-        .text{
+
+        .text {
             height: calc(100vh - 135px);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 30px;
-    
-            h1{
+
+            h1 {
                 font-size: 120px;
             }
-            h3{
+
+            h3 {
                 font-size: 30px;
             }
         }

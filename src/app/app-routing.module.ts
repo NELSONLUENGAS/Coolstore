@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NotFoundComponent } from './not-found/not-found.component';
-// import { CustomPreloadService } from './services/custom-preload.service';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { AdminGuard } from './guards/admin.guard';
 
@@ -10,9 +8,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./website/website.module').then(module => module.WebsiteModule),
-    data: {
-      preload: true
-    }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule),
   },
   {
     path: 'admin',
@@ -21,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent
+    loadChildren: () => import('./page-not-found/page-not-found.module').then(module => module.PageNotFoundModule),
   },
 ];
 
