@@ -1,4 +1,6 @@
-<app-category *ngFor="let item of productsByCategory$ | async" [category]="item"></app-category>
+<ng-container *ngIf="!(loading$ | async) else categorySkeleton">
+    <app-category *ngFor="let item of productsByCategory$ | async" [category]="item"></app-category>
+</ng-container>
 <div class="product-detail-slide" [class.active]="showProductDetail$ | async">
     <span></span>
     <div *ngIf="productChosen" class="product-detail-container">
@@ -29,3 +31,24 @@
         </div>
     </div>
 </div>
+<ng-template #categorySkeleton>
+    <div class="categories-skeleton" *ngFor="let i of ['1','2']">
+        <div class="category-header-skeleton">
+            <p-skeleton width="150px" height="22px"></p-skeleton>
+            <p-skeleton width="100px" height="22px"></p-skeleton>
+        </div>
+        <br>
+        <div class="category-container-skeleton">
+            <div class="category-skeleton" *ngFor="let i of ['1','2','3','4','5']">
+                <div class="image-skeleton">
+                    <p-skeleton shape="rectangle" width="100%" height="200px"></p-skeleton>
+                </div>
+                <p-skeleton styleClass="m-2" width="70%" height="22px"></p-skeleton>
+                <div class="detail-skeleton">
+                    <p-skeleton width="120px" height="22px"></p-skeleton>
+                    <p-skeleton width="22px" shape="circle" height="22px"></p-skeleton>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

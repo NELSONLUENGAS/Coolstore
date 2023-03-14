@@ -9,9 +9,10 @@ import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { SkeletonModule } from 'primeng/skeleton';
 
 const UX_MODULE = [
-  TableModule, DividerModule, ToastModule, ButtonModule, PasswordModule, InputTextModule
+  TableModule, DividerModule, ToastModule, ButtonModule, PasswordModule, InputTextModule, SkeletonModule
 ]
 
 @NgModule({
