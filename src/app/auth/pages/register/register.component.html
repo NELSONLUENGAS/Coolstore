@@ -1,1 +1,62 @@
-<p>register works!</p>
+<div class="register-container">
+    <div class="register-header">
+        <img src="assets/images/logo_light.png" alt="">
+    </div>
+    <div class="register-title">
+        <h1>Welcome Dear</h1>
+        <span>Register your account</span>
+    </div>
+    <br>
+    <div class="register-form">
+        <div class="register-wraper">
+            <div class="register-form-container">
+                <div class="register-username">
+                    <div class="register-icon">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </div>
+                    <div class="register-input">
+                        <input placeholder="Firstname" type="text" pInputText />
+                    </div>
+                </div>
+                <div class="register-username">
+                    <div class="register-icon">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </div>
+                    <div class="register-input">
+                        <input placeholder="Lastname" type="text" pInputText />
+                    </div>
+                </div>
+                <div class="register-username">
+                    <div class="register-icon">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </div>
+                    <div class="register-input">
+                        <input placeholder="user@gmail.com" type="text" pInputText />
+                    </div>
+                </div>
+                <div class="register-password">
+                    <div class="register-icon">
+                        <fa-icon [icon]="faLock"></fa-icon>
+                    </div>
+                    <div class="register-input">
+                        <p-password placeholder="password" [(ngModel)]="password" [toggleMask]="true"></p-password>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="register-btn">
+                <button>
+                    <span>Sigup</span>
+                </button>
+            </div>
+            <br>
+            <div class="register-footer">
+                <span>Do you have an account?</span>
+                <a routerLink="/auth/login">
+                    Sign In
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
