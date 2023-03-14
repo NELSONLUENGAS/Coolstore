@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="detail-more">
-            <a [routerLink]="['/product', productChosen.id]">
+            <a (click)="onHideProductDetail()" [routerLink]="['/product', productChosen.id]">
                 <button>View More</button>
             </a>
             <button>Buy Now</button>

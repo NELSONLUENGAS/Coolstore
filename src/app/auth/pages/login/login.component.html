@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-header">
+        <img src="assets/images/logo_light.png" alt="">
+    </div>
+    <div class="login-title">
+        <h1>Welcome Back</h1>
+        <span>Login in your account</span>
+    </div>
+    <br>
+    <div class="login-form">
+        <div class="login-wraper">
+            <div class="login-form-container">
+                <div class="login-username">
+                    <div class="login-icon">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </div>
+                    <div class="login-input">
+                        <input placeholder="user@gmail.com" type="text" pInputText />
+                    </div>
+                </div>
+                <div class="login-password">
+                    <div class="login-icon">
+                        <fa-icon [icon]="faLock"></fa-icon>
+                    </div>
+                    <div class="login-input">
+                        <p-password placeholder="password" [(ngModel)]="password" [toggleMask]="true"></p-password>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <br>
+            <div class="login-btn">
+                <button>
+                    <span>Login</span>
+                </button>
+            </div>
+            <br>
+            <div class="login-footer">
+                <span>Don't have an account?</span>
+                <a routerLink="/auth/register">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

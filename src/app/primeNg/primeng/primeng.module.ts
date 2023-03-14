@@ -7,9 +7,11 @@ import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 
 const UX_MODULE = [
-  TableModule, DividerModule, ToastModule, ButtonModule
+  TableModule, DividerModule, ToastModule, ButtonModule, PasswordModule, InputTextModule
 ]
 
 @NgModule({
