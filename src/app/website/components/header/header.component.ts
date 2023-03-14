@@ -50,7 +50,6 @@ export class HeaderComponent implements OnInit {
     private location: Location
   ) { }
 
-  loading$: Observable<boolean> = new Observable()
   cartOpened$ = this.cartFacade.cartOpen$
   cartItems$ = this.cartFacade.cartItems$
   cartQuantity$ = this.cartFacade.cartQuantity$
@@ -60,7 +59,6 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loading$ = this.store.select(selectCategoryLoading)
     this.cartFacade.setCart()
     this.categoryFacade.loadCategories()
     this.cartFacade.setCartQuantity()

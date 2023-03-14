@@ -8,7 +8,7 @@ import { DetailFacadeService } from 'src/app/NGRX/facades/detail.facade.service'
 import { ProductFacadeService } from 'src/app/NGRX/facades/product.facade.service';
 import { ProductByCategory } from 'src/app/NGRX/models/category.model';
 import { AppState } from 'src/app/NGRX/models/state';
-import { selectCategoryList, selectProductsByCategory, selectProductsByCategoryLoading } from 'src/app/NGRX/selectors/category.selector';
+import { selectCategoryList, selectCategoryLoading, selectProductsByCategory, selectProductsByCategoryLoading } from 'src/app/NGRX/selectors/category.selector';
 
 @Component({
   selector: 'app-categories',
@@ -32,6 +32,7 @@ export class CategoriesComponent {
   categories$ = this.store.select(selectCategoryList)
   productsByCategory$ = this.store.select(selectProductsByCategory)
   productsByCategoryLoading$ = this.store.select(selectProductsByCategoryLoading)
+  loading$ = this.store.select(selectCategoryLoading)
 
   showProductDetail$ = this.detailFacade.detailOpened$
 

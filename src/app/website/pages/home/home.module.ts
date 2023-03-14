@@ -8,6 +8,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 import { HomeComponent } from './home.component';
+import { PrimengModule } from 'src/app/primeNg/primeng/primeng.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HomeComponent } from './home.component';
     HomeRoutingModule,
     FontAwesomeModule,
     SwiperModule,
+    PrimengModule
   ]
 })
 export class HomeModule { }
