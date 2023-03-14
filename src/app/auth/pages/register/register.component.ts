@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faLock, faUserLarge } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  faUser = faUserLarge
+  faLock = faLock
+
+  password = ''
 }
