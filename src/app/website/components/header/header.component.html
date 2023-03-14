@@ -9,7 +9,7 @@
             *ngIf="sidebarOpened$ | async">
             <fa-icon [icon]="faClose"></fa-icon>
         </button>
-        <a routerLink="/home">
+        <a (click)="onHideProductDetail()" routerLink="/home">
             <img src="assets/images/logo_light.png" alt="logo">
             <p-divider layout="vertical"></p-divider>
             <span>CoolStore</span>
@@ -32,7 +32,7 @@
 <div class="hide-mobile">
     <div>
         <nav>
-            <a class="logo" routerLink="/home">
+            <a (click)="onHideProductDetail()" class="logo" routerLink="/home">
                 <img [width]="80" src="assets/images/logo_light.png" alt="">
                 <p-divider layout="vertical"></p-divider>
                 <span>CoolStore</span>
@@ -46,7 +46,7 @@
                 <button *ngIf="user" (click)="Logout()">
                     <span>Log out</span>
                 </button>
-                <button *ngIf="!user" (click)="login()">
+                <button routerLink="/auth/login" *ngIf="!user" (click)="login()">
                     <span>Log in</span>
                 </button>
             </div>

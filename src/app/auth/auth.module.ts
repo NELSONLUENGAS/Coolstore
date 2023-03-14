@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimengModule } from '../primeNg/primeng/primeng.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { RegisterComponent } from './pages/register/register.component';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    FontAwesomeModule,
+    PrimengModule,
+    FormsModule
   ]
 })
 export class AuthModule { }

@@ -105,6 +105,11 @@ export class HeaderComponent implements OnInit {
     this.cartFacade.closeCart()
   }
 
+  onHideProductDetail() {
+    this.detailFacade.closeDetail()
+  }
+
+
   login() {
     this.AuthService.Login('Carla@gmail.com', '12345')
       .subscribe(() => this.router.navigate(['/profile']))
