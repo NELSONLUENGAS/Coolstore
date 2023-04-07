@@ -1,0 +1,94 @@
+<section class="category-create-section">
+    <div class="category-header">
+        <div class="category-button">
+            <p-button (onClick)="onGoBack($event)" pRiple label="Go Back">
+                <fa-icon style="margin-right: 10px;" [icon]="faBack">
+
+                </fa-icon>
+            </p-button>
+        </div>
+        <div class="category-title">
+            <h2>Category {{editMode? 'Editing': 'Creation'}}</h2>
+        </div>
+    </div>
+    <form [formGroup]="form" (submit)="onSubmit($event)">
+        <div class="category-name">
+            <label for="name">
+                <h4>Category Name</h4>
+            </label>
+            <div class="container" [class.error-field]="_nameError">
+                <div class="small-error" *ngIf="_nameError">
+                    <small *ngIf="_nameErrorRequired">Field required</small>
+                    <small *ngIf="!_nameErrorRequired && _nameErrorLength">It should have been a minimum of 4
+                        characters</small>
+                    <!-- <small *ngIf="!_nameErrorRequired && _nameErrorExist">This name already exist</small> -->
+                </div>
+                <div class="input-name">
+                    <input type="text" pInputText formControlName="name" />
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="category-file">
+            <label for="image">
+                <h4>Upload Image</h4>
+            </label>
+            <div class="file-upload-container">
+                <div class="input-file-actions">
+                    <p-button (onClick)="fileImage.click()" pRiple label="Choose" icon="pi pi-plus">
+                        <input #fileImage hidden (change)="selectFile($event)" type="file" accept="image/*">
+                    </p-button>
+                    <p-button [disabled]="fileSelected === null || uploaded" (onClick)="uploadFile()" pRiple
+                        label="Upload" icon="pi pi-upload"></p-button>
+                    <p-button [disabled]="(fileSelected === null) || uploading" (onClick)="cancelUpload()" pRiple
+                        label="Cancel" icon="pi pi-times"></p-button>
+
+                </div>
+                <div class="file-selected-container" [class.error-field]="_imageError || ! uploaded">
+                    <hr *ngIf="fileSelected === null else progressBar">
+                    <h3 *ngIf="fileSelected === null && !editMode">No file selected</h3>
+                    <div class="small-error" *ngIf="_imageError">
+                        <small *ngIf="_imageErrorRequired">Field required</small>
+                    </div>
+                    <div class="small-error" *ngIf="submit && !uploaded && !_imageError">
+                        <small>You should Upload the file</small>
+                    </div>
+
+                    <ng-template #progressBar>
+                        <p-progressBar [style]=" { height: '6px' }" [value]="filePercentLoading$ | async ">
+                        </p-progressBar>
+                    </ng-template>
+                    <div *ngIf="fileSelected !== null" class="file-selected">
+                        <div>
+                            <img width="150" [src]="file || image?.value" alt="file selected">
+                        </div>
+                        <div>
+                            <span>{{fileSelected.name}}</span>
+                        </div>
+                        <div>
+                            <span>{{(fileSelected.size/ 1024) | number: '1.2-2'}} KB</span>
+                        </div>
+                        <div>
+                            <p-button [disabled]="(fileSelected === null) || uploading" (onClick)="cancelUpload()"
+                                pRiple icon="pi pi-times"></p-button>
+
+                        </div>
+                    </div>
+                    <div *ngIf="editMode && fileSelected === null" class="file-selected">
+                        <div>
+                            <img width="150" [src]="file || image?.value" alt="file selected">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="category-submit">
+            <p-button type="submit" pRiple label="Save">
+            </p-button>
+        </div>
+    </form>
+</section>
+<p-toast [breakpoints]="{'425px': {width: '100%', right: '0', left: '0'}}" [showTransformOptions]="'translateY(100%)'"
+    [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+    [showTransformOptions]="'translateX(100%)'"></p-toast>

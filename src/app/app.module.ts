@@ -15,11 +15,11 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCER } from './NGRX/models/state';
 import { EffectsModule } from '@ngrx/effects';
-import { CategoryEffects } from './NGRX/effects/category.effect';
-import { CartEffects } from './NGRX/effects/cart.effect';
-import { ProductEffects } from './NGRX/effects/product.effect';
-import { NavEffects } from './NGRX/effects/nav.effect';
-import { DetailEffects } from './NGRX/effects/detail.effect';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { ROOT_EFFECTS } from './NGRX/effects/root.effects';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -35,16 +35,13 @@ import { DetailEffects } from './NGRX/effects/detail.effect';
     QuicklinkModule,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: isDevMode() }),
-    EffectsModule.forRoot([
-      CategoryEffects,
-      CartEffects,
-      ProductEffects,
-      NavEffects,
-      DetailEffects,
-    ])
+    EffectsModule.forRoot(ROOT_EFFECTS),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
   ],
   providers: [
     CookieService,
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TimeInterceptor,

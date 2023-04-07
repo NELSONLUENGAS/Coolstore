@@ -1,37 +1,24 @@
-div {
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 220px 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "header header header"
-        "nav content content";
-    header {
-      grid-area: header;
-      background-color: #3E51B5;
-      color: white;
-      padding: 1em;
-      box-shadow: 1px 2px 4px 0 rgb(21 99 157 / 16%);
-      border-bottom: 1px solid rgba(21,99,157,0.16);
-    }
-    nav {
-      grid-area: nav;
-      border-right: 1px solid rgba(21,99,157,0.16);
-      background-color: #fff;
-      a {
-        margin: 0;
-        padding: 0;
-        padding: 1em;
-        cursor: pointer;
-        position: relative;
-        display: block;
-        text-decoration: none;
-        color: #000;
-      }
-    }
-    main {
-      grid-area: content;
-      background-color: #f3f8fb;
-      padding: 1em;
-    }
+@import '../../pages/products/products.component.scss';
+
+$mobile-L: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+
+.main-background {
+  padding-top: 41px;
+}
+
+.admin-layout {
+  background: radial-gradient(circle, #94e0ed, #86dbea, #77d6e6, #67d0e3, #55cbe0, #4bccdf, #41cdde, #35cedc, #3bd5db, #44dcda, #50e3d7, #5eead4);
+
+  main {
+    padding-left: 0;
   }
+}
+
+@media screen and (min-width: ($laptop + 10)) {
+
+  .admin-layout main {
+    padding-left: 250px;
+  }
+}

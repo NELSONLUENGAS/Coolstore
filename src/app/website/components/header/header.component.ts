@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowRight, faBarsStaggered, faShoppingCart, faStore, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
 import { Observable, switchMap } from 'rxjs';
-import { ICartProduct, ICategory } from 'src/app/models/IProduct';
+import { ICartProduct } from 'src/app/models/IProduct';
 import { IUser } from 'src/app/models/IUsers';
 import { CartFacadeService } from 'src/app/NGRX/facades/cart.facade.service';
 import { CategoryFacadeService } from 'src/app/NGRX/facades/category.facade.service';
@@ -24,8 +24,8 @@ import { CategoryService } from 'src/app/services/category.service';
 export class HeaderComponent implements OnInit {
 
   clickedCart = false
-  faBars = faBarsStaggered;
   faShoppingCart = faShoppingCart
+  faBars = faBarsStaggered;
   faClose = faTimes
 
   counter = 0
@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
   user: IUser | null = null
   faCloseCircle = faTimesCircle
   faArrow = faArrowRight
-  faStore = faStore
   currentRoute = ""
   cartItems: ICartProduct[] = []
 

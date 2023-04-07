@@ -23,3 +23,8 @@ export const selectProductsByCategoryLoading = createSelector(
     selectCategoryState,
     (state: CategoryState) => state.loadingProducts
 )
+
+export const selectCategory = createSelector(
+    selectCategoryState,
+    (state: CategoryState) => state.category
+)
