@@ -1,6 +1,6 @@
 <div class="register-container">
     <div class="register-header">
-        <img routerLink="/home" src="assets/images/logo_light.png" alt="">
+        <img (click)="handleSideMenuClose()" routerLink="/home" src="assets/images/logo_light.png" alt="">
     </div>
     <div class="register-title">
         <h1>Welcome Dear</h1>
@@ -8,45 +8,115 @@
     </div>
     <br>
     <div class="register-form">
-        <div class="register-wraper">
+        <form [formGroup]="formRegister" (submit)="register($event)" class="register-wraper">
             <div class="register-form-container">
-                <div class="register-username">
-                    <div class="register-icon">
-                        <fa-icon [icon]="faUser"></fa-icon>
+                <div class="container" [class.error-field]="_nameError">
+                    <div class="small-error" *ngIf="_nameError">
+                        <small *ngIf="_nameErrorRequired">Field required</small>
                     </div>
-                    <div class="register-input">
-                        <input placeholder="Firstname" type="text" pInputText />
-                    </div>
-                </div>
-                <div class="register-username">
-                    <div class="register-icon">
-                        <fa-icon [icon]="faUser"></fa-icon>
-                    </div>
-                    <div class="register-input">
-                        <input placeholder="Lastname" type="text" pInputText />
+                    <div class="register-username">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <input formControlName="name" placeholder="Firstname" type="text" pInputText />
+                        </div>
                     </div>
                 </div>
-                <div class="register-username">
-                    <div class="register-icon">
-                        <fa-icon [icon]="faUser"></fa-icon>
+                <div class="container" [class.error-field]="_lastnameError">
+                    <div class="small-error" *ngIf="_lastnameError">
+                        <small *ngIf="_lastnameErrorRequired">Field required</small>
                     </div>
-                    <div class="register-input">
-                        <input placeholder="user@gmail.com" type="text" pInputText />
+                    <div class="register-username">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <input formControlName="last" placeholder="Lastname" type="text" pInputText />
+                        </div>
                     </div>
                 </div>
-                <div class="register-password">
-                    <div class="register-icon">
-                        <fa-icon [icon]="faLock"></fa-icon>
+                <div class="container" [class.error-field]="_emailError">
+                    <div class="small-error" *ngIf="_emailError">
+                        <small *ngIf="_emailErrorRequired">Field required</small>
+                        <small *ngIf="_emailInvalidError">Write an email valid</small>
                     </div>
-                    <div class="register-input">
-                        <p-password placeholder="password" [(ngModel)]="password" [toggleMask]="true"></p-password>
+                    <div class="register-username">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <input formControlName="email" placeholder="user@gmail.com" type="text" pInputText />
+                        </div>
+                    </div>
+                </div>
+                <div class="container" [class.error-field]="_passwordError">
+                    <div class="small-error" *ngIf="_passwordError">
+                        <small *ngIf="_passwordErrorRequired">Field required</small>
+                        <small *ngIf="_passwordErrorLength">It should have be min 8 characters</small>
+                        <small *ngIf="_passwordErrorCustom && !_passwordErrorRequired && !_passwordErrorLength">It
+                            should have be min 1
+                            number</small>
+                    </div>
+                    <div class="register-password">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faLock"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <p-password placeholder="password" formControlName="password"
+                                [toggleMask]="true"></p-password>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" [class.error-field]="_confirmPasswordError">
+                    <div class="small-error" *ngIf="_confirmPasswordError">
+                        <small *ngIf="_confirmPasswordErrorRequired">Field required</small>
+                        <small *ngIf="_passwordErrorMatch && !_confirmPasswordErrorRequired">Password not match</small>
+                    </div>
+                    <div class="register-password">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faLock"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <p-password placeholder="confirm password" formControlName="confirmPassword"
+                                [toggleMask]="true"></p-password>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="register-input-radius">
+                        <div>
+                            <p-radioButton formControlName="type" value="company" inputId="company"></p-radioButton>
+                            <label for="company">Company</label>
+                        </div>
+                        <div>
+                            <p-radioButton formControlName="type" value="customer" inputId="customer"></p-radioButton>
+                            <label for="customer">Customer</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" [class.error-field]="_companyNameError">
+                    <div class="small-error" *ngIf="_companyNameError">
+                        <small *ngIf="_companyNameErrorRequired">Field required</small>
+                        <small *ngIf="_companyNameErrorLength">Your company name should have be min 3 characters</small>
+                    </div>
+                    <div class="register-username">
+                        <div class="register-icon">
+                            <fa-icon [icon]="faCity"></fa-icon>
+                        </div>
+                        <div class="register-input">
+                            <input *ngIf="_typeValue === 'company'" formControlName="companyName"
+                                placeholder="Your company name" type="text" pInputText />
+                            <input *ngIf="_typeValue === 'customer'" [disabled]="true" placeholder="Your company name"
+                                type="text" pInputText />
+                        </div>
                     </div>
                 </div>
             </div>
             <br>
             <br>
             <div class="register-btn">
-                <button>
+                <button type="submit">
                     <span>Sigup</span>
                 </button>
             </div>
@@ -57,6 +127,6 @@
                     Sign In
                 </a>
             </div>
-        </div>
+        </form>
     </div>
 </div>

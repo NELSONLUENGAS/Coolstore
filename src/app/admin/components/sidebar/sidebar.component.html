@@ -1,0 +1,122 @@
+<div class="sidebar-container">
+    <div [id]="currentRoute === 'dashboard' ? 'prev' : null" class="admin-logo">
+        <img src="assets/images/logo_light.png" alt="">
+    </div>
+    <div class="admin-items">
+        <div [id]="currentRoute === 'dashboard' ? 'select' : currentRoute === 'products' ? 'prev':  null">
+            <li>
+                <fa-icon [icon]="dashboardIcon"></fa-icon>
+                <span routerLink="dashboard" aria-label="dashboard" (click)="getCurrentRoute($event)">Dashboard</span>
+            </li>
+        </div>
+        <div
+            [id]="currentRoute === 'dashboard' ? 'next' : currentRoute === 'products' ? 'select':  currentRoute === 'orders' ? 'prev':  null">
+            <li>
+                <fa-icon [icon]="productsIcon"></fa-icon>
+                <span routerLink="products" aria-label="products" (click)="getCurrentRoute($event)">Products</span>
+            </li>
+        </div>
+        <div
+            [id]="currentRoute === 'products' ? 'next' : currentRoute === 'orders' ? 'select':  currentRoute === 'users' ? 'prev':  null">
+            <li>
+                <fa-icon [icon]="ordersIcon"></fa-icon>
+                <span routerLink="orders" aria-label="orders" (click)="getCurrentRoute($event)">Orders</span>
+            </li>
+        </div>
+        <div
+            [id]="currentRoute === 'orders' ? 'next' : currentRoute === 'users' ? 'select':  currentRoute === 'statistic' ? 'prev':  null">
+            <li>
+                <fa-icon [icon]="usersIcon"></fa-icon>
+                <span routerLink="users" aria-label="users" (click)="getCurrentRoute($event)">Users</span>
+            </li>
+        </div>
+        <div
+            [id]="currentRoute === 'users' ? 'next' : currentRoute === 'statistic' ? 'select':  currentRoute === 'profile' ? 'prev':  null">
+            <li>
+                <fa-icon [icon]="statisticIcon"></fa-icon>
+                <span routerLink="statistic" aria-label="statistic" (click)="getCurrentRoute($event)">Statistic</span>
+            </li>
+        </div>
+        <div [id]="currentRoute === 'statistic' ? 'next' : currentRoute === 'profile' ? 'select':  null">
+            <li>
+                <fa-icon [icon]="profileIcon"></fa-icon>
+                <span routerLink="profile" aria-label="profile" (click)="getCurrentRoute($event)">Profile</span>
+            </li>
+        </div>
+    </div>
+    <div [id]="currentRoute === 'profile' ? 'last' :  null" class="admin-footer">
+        <li><a href="#">Facebbok</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+    </div>
+</div>
+//mobile
+<div [class.active]="sidebarOpen$ | async" class="sidebar-mobile">
+    <button class="close-sidebar" (click)="onCloseSidebar($event)">
+        <fa-icon [icon]="faClose"></fa-icon>
+    </button>
+    <div class="admin-logo">
+        <img src="assets/images/logo_light.png" alt="logo-bussiness">
+    </div>
+    <div class="admin-items">
+        <div class="admin-dashboard">
+            <li>
+                <fa-icon [icon]="dashboardIcon"></fa-icon>
+                <span (click)="onCloseSidebar($event)" routerLink="dashboard">Dashboard</span>
+            </li>
+        </div>
+        <div class="admin-products">
+            <li class="products-li">
+                <div class="products">
+                    <div class="products-link">
+                        <fa-icon [icon]="productsIcon"></fa-icon>
+                        <span (click)="onOpenProductsLink($event)">Products</span>
+                        <fa-icon id="chevron-right" *ngIf="!openProducts" [icon]="chevronRightIcon"></fa-icon>
+                        <fa-icon id="chevron-down" *ngIf="openProducts" [icon]="chevronDownIcon"></fa-icon>
+                    </div>
+                    <div *ngIf="openProducts" class="products-items">
+                        <div class="product">
+                            <fa-icon [icon]="listIcon"></fa-icon>
+                            <span (click)="onCloseSidebar($event)" routerLink="products/product-list">Product
+                                List</span>
+                        </div>
+                        <div class="category">
+                            <fa-icon [icon]="listIcon"></fa-icon>
+                            <span (click)="onCloseSidebar($event)" routerLink="products/category-list">Category
+                                List</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </div>
+        <div class="admin-orders">
+            <li>
+                <fa-icon [icon]="ordersIcon"></fa-icon>
+                <span (click)="onCloseSidebar($event)" routerLink="orders">Orders</span>
+            </li>
+        </div>
+        <div class="admin-users">
+            <li>
+                <fa-icon [icon]="usersIcon"></fa-icon>
+                <span (click)="onCloseSidebar($event)" routerLink="users">Users</span>
+            </li>
+        </div>
+        <div class="admin-statistics">
+            <li>
+                <fa-icon [icon]="statisticIcon"></fa-icon>
+                <span (click)="onCloseSidebar($event)" routerLink="statistic">Statistic</span>
+            </li>
+        </div>
+        <div class="admin-profile">
+            <li>
+                <fa-icon [icon]="profileIcon"></fa-icon>
+                <span (click)="onCloseSidebar($event)" routerLink="profile">Profile</span>
+            </li>
+        </div>
+    </div>
+    <div class="admin-footer">
+        <li><a href="#">Facebbok</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+    </div>
+</div>

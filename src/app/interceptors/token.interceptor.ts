@@ -16,7 +16,6 @@ export class TokenInterceptor implements HttpInterceptor {
   ) { }
 
   private addToken(request: HttpRequest<unknown>) {
-    console.log('add token');
 
     const token = this.TokenService.getToken()
     if (token) {

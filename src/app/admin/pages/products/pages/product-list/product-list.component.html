@@ -1,0 +1,172 @@
+<div class="product-list">
+    <p-table id="table-desktop" *ngIf="!(productsLoading$ | async)" [value]="allProducts" [scrollable]="true"
+        [rows]="rows" [paginator]="true" [scrollHeight]="scrollHeight + 'px'">
+        <ng-template pTemplate="header">
+            <tr>
+                <th rowspan="2">Name</th>
+                <th rowspan="2">Image</th>
+                <th rowspan="2">Price</th>
+                <th rowspan="2">Category</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            <tr>
+                <th>View</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template #bodyLoaded let-product pTemplate="body">
+            <tr>
+                <td>{{product.title}}</td>
+                <td>
+                    <img [width]="80" [src]="product.images[0]" alt="product-image">
+                </td>
+                <td>{{product.price |currency}}</td>
+                <td>{{product.category.name}}</td>
+                <td>
+                    <button id="view" [routerLink]="['/admin/products/product-detail', product.id]">
+                        <fa-icon [icon]="faView"></fa-icon>
+                    </button>
+                </td>
+                <td>
+                    <button id="edit" [routerLink]="['/admin/products/product-form/edit', product.id]">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                </td>
+                <td>
+                    <button id="delete" (click)="showConfirm(product.id)">
+                        <fa-icon [icon]="faDelete"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-table id="table-empty" *ngIf="productsLoading$ | async" [value]="valueEmpty">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let i of [1,2,3,4]">
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                </th>
+                <th colspan="3">
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template let-index pTemplate="body">
+            <tr>
+                <td>
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton height="4rem"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                </td>
+                <td *ngFor="let i of [1,2,3]">
+                    <p-skeleton></p-skeleton>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="card" id="table-mobile" *ngIf="!(productsLoading$ | async)">
+        <p-dataView [value]="allProducts" [paginator]="true" [rows]="rows">
+            <ng-template let-product pTemplate="listItem">
+                <div class="col-12">
+                    <div class="flex flex-column p-4 gap-4">
+                        <img class="w-9 shadow-2 block mx-auto border-round" [src]="product.images[0]"
+                            [alt]="product.title" />
+                        <div class="flex flex-column justify-content-between align-items-center  flex-1 gap-4">
+                            <div class="flex flex-column align-items-center gap-3">
+                                <div class="text-2xl font-bold text-900">{{ product.title }}</div>
+                                <span class="text-2xl font-semibold">{{product.price | currency }}</span>
+                                <div class="flex align-items-center gap-3">
+                                    <span class="flex align-items-center gap-2">
+                                        <i class="pi pi-tag"></i>
+                                        <span class="font-semibold">{{ product.category.name }}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex align-items-center gap-3 ">
+
+                                <div>
+                                    <button id="view" [routerLink]="['/admin/products/product-detail', product.id]">
+                                        <span>View</span>
+                                        <fa-icon [icon]="faView"></fa-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button id="edit" [routerLink]="['/admin/products/product-form/edit', product.id]">
+                                        <span>Edit</span>
+                                        <fa-icon [icon]="faEdit"></fa-icon>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button id="delete" (click)="showConfirm(product.id)">
+                                        <span>Delete</span>
+                                        <fa-icon [icon]="faDelete"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <div class="card" id="table-mobile-empty" *ngIf="productsLoading$ | async">
+        <p-dataView [value]="valueEmpty">
+            <ng-template let-product pTemplate="listItem">
+                <div class="col-12">
+                    <div class="flex flex-column p-4 gap-4">
+                        <p-skeleton class="mx-auto" height="100px" width="160px" borderRadius="16px"></p-skeleton>
+                        <div class="flex flex-column justify-content-between align-items-center  flex-1 gap-4">
+                            <div class="flex flex-column align-items-center gap-3">
+                                <p-skeleton width="180px" height="30px" borderRadius="16px"></p-skeleton>
+                                <p-skeleton width="120px" height="30px" borderRadius="16px"></p-skeleton>
+                                <div class="flex align-items-center gap-3">
+                                    <p-skeleton width="150px" height="30px" borderRadius="16px"></p-skeleton>
+                                </div>
+                            </div>
+                            <div class="flex align-items-center gap-3 ">
+
+                                <div>
+                                    <p-skeleton width="80px" height="20px" borderRadius="16px"></p-skeleton>
+                                </div>
+                                <div>
+                                    <p-skeleton width="80px" height="20px" borderRadius="16px"></p-skeleton>
+                                </div>
+                                <div>
+                                    <p-skeleton width="80px" height="20px" borderRadius="16px"></p-skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>
+<p-toast [breakpoints]="{'425px': {width: '100%', right: '0', left: '0'}}" position="bottom-left" key="c"
+    (onClose)="onReject()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class=" toast-message flex " style="flex: 1">
+            <div class="text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-6">
+                    <button type="button" pButton (click)="onConfirm()" label="Yes" class="p-button-success"></button>
+                </div>
+                <div class="col-6">
+                    <button type="button" pButton (click)="onReject()" label="No" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

@@ -1,0 +1,143 @@
+<section class="product-create-section">
+    <div class="product-header">
+        <div class="product-button">
+            <p-button (onClick)="onGoBack($event)" pRiple label="Go Back">
+                <fa-icon style="margin-right: 10px;" [icon]="faBack">
+
+                </fa-icon>
+            </p-button>
+        </div>
+        <div class="product-title">
+            <h2>Product {{editMode? 'Editing': 'Creation'}}</h2>
+        </div>
+    </div>
+    <form [formGroup]="form" (submit)="onSubmit($event)">
+        <div class="product-name">
+            <label>
+                <h4>Product Name</h4>
+            </label>
+            <div class="container" [class.error-field]="_nameError">
+                <div class="small-error" *ngIf="_nameError">
+                    <small *ngIf="_nameErrorRequired">Field required</small>
+                    <small *ngIf="!_nameErrorRequired && _nameErrorLength">It should have been a minimum of 4
+                        characters</small>
+                </div>
+                <div class="input-name">
+                    <input type="text" pInputText formControlName="title" />
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-price">
+            <label>
+                <h4>Product Price</h4>
+            </label>
+            <div class="container" [class.error-field]="_priceError">
+                <div class="small-error" *ngIf="_priceError">
+                    <small *ngIf="_priceErrorRequired">Field required</small>
+                    <small *ngIf="_priceErrorMin && ! _priceErrorRequired">It should have been minimun of 1</small>
+                </div>
+                <div class="input-name">
+                    <p-inputNumber mode="currency" currency="USD" locale="en-US" formControlName="price">
+                    </p-inputNumber>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-description">
+            <label>
+                <h4>Product Description</h4>
+            </label>
+            <div class="container" [class.error-field]="_descriptionError">
+                <div class="small-error" *ngIf="_descriptionError">
+                    <small *ngIf="_descriptionErrorRequired">Field required</small>
+                    <small *ngIf="!_descriptionErrorRequired && _descriptionErrorLength">It should have been a minimum
+                        of 30
+                        characters</small>
+                </div>
+                <div class="input-edit">
+                    <p-editor formControlName="description" [style]="{ height: '300px' }"></p-editor>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-category">
+            <label>
+                <h4>Product Category</h4>
+            </label>
+            <div class="container" [class.error-field]="_categoryError">
+                <div class="small-error" *ngIf="_categoryError">
+                    <small *ngIf="_categoryErrorRequired">Field required</small>
+                </div>
+                <div class="input-name">
+                    <p-dropdown placeholder="Select Category" formControlName="categoryId" [options]="categories"
+                        optionLabel="name" optionValue="id"></p-dropdown>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-file">
+            <label for="image">
+                <h4>Upload Image</h4>
+            </label>
+            <div class="file-upload-container">
+                <div class="input-file-actions">
+                    <p-button (onClick)="fileImage.click()" pRiple label="Choose" icon="pi pi-plus">
+                        <input #fileImage hidden (change)="selectFile($event)" type="file" accept="image/*" multiple>
+                    </p-button>
+                    <p-button [disabled]="filesSelected.length === 0 || uploaded" (onClick)="uploadFile()" pRiple
+                        label="Upload" icon="pi pi-upload"></p-button>
+                    <p-button [disabled]="(filesSelected.length === 0) || uploading" (onClick)="cancelUpload()" pRiple
+                        label="Cancel" icon="pi pi-times"></p-button>
+
+                </div>
+                <div class="file-selected-container" [class.error-field]="_imageError || ! uploaded">
+                    <hr *ngIf="filesSelected.length === 0 else progressBar">
+                    <h3 *ngIf="filesSelected.length === 0 && !editMode">No file selected</h3>
+                    <div class="small-error" *ngIf="_imageError">
+                        <small *ngIf="_imageErrorRequired">Field required</small>
+                    </div>
+                    <div class="small-error" *ngIf="submit && !uploaded && !_imageError">
+                        <small>You should Upload the file</small>
+                    </div>
+
+                    <ng-template #progressBar>
+                        <p-progressBar [style]=" { height: '6px' }" [value]="filePercentLoading$ | async ">
+                        </p-progressBar>
+                    </ng-template>
+                    <ng-container *ngIf="filesSelected.length">
+                        <div *ngFor="let file of filesSelected; let i = index" class="file-selected">
+                            <div>
+                                <img width="150" [src]="files[i] || image?.value[i]" alt="file selected">
+                            </div>
+                            <div>
+                                <span>{{file.name}}</span>
+                            </div>
+                            <div>
+                                <span>{{(file.size/ 1024) | number: '1.2-2'}} KB</span>
+                            </div>
+                            <div>
+                                <p-button [disabled]="(filesSelected.length === 0) || uploading"
+                                    (onClick)="deleteItem(i)" pRiple icon="pi pi-times"></p-button>
+
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div *ngIf="editMode && (filesSelected.length === 0)" class="file-selected">
+                        <div *ngFor="let img of image?.value">
+                            <img width="150" [src]="img" alt="file selected">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-submit">
+            <p-button type="submit" pRiple label="Save">
+            </p-button>
+        </div>
+    </form>
+</section>
+<p-toast [breakpoints]="{'425px': {width: '100%', right: '0', left: '0'}}" [showTransformOptions]="'translateY(100%)'"
+    [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+    [showTransformOptions]="'translateX(100%)'"></p-toast>

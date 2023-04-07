@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { loadedCategories, loadCategories, loadProductsByCategory, loadedProductsByCategory } from "../actions/category.action";
+import { loadedCategories, loadCategories, loadProductsByCategory, loadedProductsByCategory, categoryObtained } from "../actions/category.action";
 import { CategoryState } from "../models/category.model";
 
 
@@ -8,7 +8,12 @@ export const initialState: CategoryState = {
     loadingCategories: false,
     loadingProducts: false,
     categories: [],
-    productsByCategory: []
+    productsByCategory: [],
+    category: {
+        id: '',
+        name: '',
+        image: ''
+    }
 }
 
 export const categoryReducer = createReducer(
@@ -38,5 +43,11 @@ export const categoryReducer = createReducer(
             productsByCategory: [...state.productsByCategory, item],
             loadingProducts: loading
         }
-    })
+    }),
+    on(categoryObtained, (state, { data }) => {
+        return {
+            ...state,
+            category: data
+        }
+    }),
 )

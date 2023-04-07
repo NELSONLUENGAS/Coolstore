@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="login-header">
-        <img routerLink="/home" src="assets/images/logo_light.png" alt="">
+        <img (click)="handleSideMenuClose()" routerLink="/home" src="assets/images/logo_light.png" alt="">
     </div>
     <div class="login-title">
         <h1>Welcome Back</h1>
@@ -8,14 +8,14 @@
     </div>
     <br>
     <div class="login-form">
-        <div class="login-wraper">
+        <form [formGroup]="formLogin" (submit)="login($event)" class="login-wraper">
             <div class="login-form-container">
                 <div class="login-username">
                     <div class="login-icon">
                         <fa-icon [icon]="faUser"></fa-icon>
                     </div>
                     <div class="login-input">
-                        <input placeholder="user@gmail.com" type="text" pInputText />
+                        <input formControlName="email" placeholder="user@gmail.com" type="text" pInputText />
                     </div>
                 </div>
                 <div class="login-password">
@@ -23,7 +23,7 @@
                         <fa-icon [icon]="faLock"></fa-icon>
                     </div>
                     <div class="login-input">
-                        <p-password placeholder="password" [(ngModel)]="password" [toggleMask]="true"></p-password>
+                        <p-password placeholder="password" formControlName="password" [toggleMask]="true"></p-password>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
             <br>
             <br>
             <div class="login-btn">
-                <button>
+                <button type="submit">
                     <span>Login</span>
                 </button>
             </div>
@@ -42,6 +42,6 @@
                     Sign Up
                 </a>
             </div>
-        </div>
+        </form>
     </div>
 </div>

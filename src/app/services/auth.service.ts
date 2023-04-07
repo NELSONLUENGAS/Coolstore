@@ -23,7 +23,7 @@ export class AuthService {
   user$ = this.userActive.asObservable()
 
   Login(email: string, password: string): Observable<IUser> {
-    return this.http.post<ILogin>(`${this.apiUrl}login`, { email, password })
+    return this.http.post<ILogin>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap((response: any) => {
           this.TokenService.saveToken(response.access_token)
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   Profile(): Observable<IUser> {
-    return this.http.get<IUser>(`${this.apiUrl}profile`)
+    return this.http.get<IUser>(`${this.apiUrl}/profile`)
       .pipe(
         tap((user: any) => this.userActive.next(user))
       )

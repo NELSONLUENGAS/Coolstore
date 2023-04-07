@@ -1,0 +1,127 @@
+$mobile-L: 425px;
+$tablet: 768px;
+$laptop: 1024px;
+
+.category-list {
+
+    #table-mobile-empty {
+        display: block;
+    }
+
+    #table-mobile {
+        display: block;
+
+        #edit {
+            border-radius: 10px;
+            border: none;
+            padding: 5px 10px;
+            background-color: var(--green-600);
+            cursor: pointer;
+            font-size: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        #delete {
+            border-radius: 10px;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: var(--red-600);
+            font-size: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .p-paginator {
+
+            padding: 20px 10px;
+
+            .p-paginator-first,
+            .p-paginator-prev,
+            .p-paginator-next,
+            .p-paginator-last {
+                min-width: 1.6rem;
+                height: 1.6rem;
+            }
+
+            .p-paginator-pages .p-paginator-page {
+                min-width: 1.6rem;
+                height: 1.6rem;
+            }
+        }
+    }
+
+    #table-desktop {
+        display: none;
+    }
+
+    #table-desktop-empty {
+        display: none;
+    }
+
+    .p-paginator {
+        background: #000000;
+    }
+
+    .p-datatable {
+
+        .p-datatable-thead>tr>th {
+            background: #000;
+            color: white;
+            text-align: center;
+        }
+
+        .p-datatable-tbody>tr {
+            background: var(--dark);
+
+            &:hover {
+                background-color: var(--maskbg);
+            }
+
+            &>td {
+                text-align: center;
+
+
+                img {
+                    border-radius: 10px;
+                    box-shadow: 0 0 5px 1px #000;
+                }
+
+                #edit,
+                button {
+                    border-radius: 10px;
+                    border: none;
+                    padding: 5px 10px;
+                    background-color: var(--green-600);
+                    cursor: pointer;
+                }
+
+                #delete {
+                    background-color: var(--red-600);
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: $tablet) {
+    .category-list {
+
+        #table-mobile {
+            display: none;
+        }
+
+        #table-mobile-empty {
+            display: none;
+        }
+
+        #table-desktop {
+            display: block;
+        }
+
+        #table-desktop-empty {
+            display: block;
+        }
+    }
+}

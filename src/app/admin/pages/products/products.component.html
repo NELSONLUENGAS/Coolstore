@@ -1,0 +1,21 @@
+<div *ngIf="currentPath.length < 5" class="admin-product-section">
+    <section routerLinkActive="active" id="product-list">
+        <a routerLink="product-list">
+            <h2><fa-icon [icon]="faListIcon"></fa-icon> Product List</h2>
+        </a>
+        <a routerLink="product-form/add">
+            <h2><fa-icon [icon]="faAddIcon"></fa-icon> Add</h2>
+        </a>
+    </section>
+    <section routerLinkActive="active" id="category-list">
+        <a routerLink="category-list">
+            <h2><fa-icon [icon]="faListIcon"></fa-icon> Category List</h2>
+        </a>
+        <a routerLink="category-form/add">
+            <h2><fa-icon [icon]="faAddIcon"></fa-icon> Add</h2>
+        </a>
+    </section>
+</div>
+<div class="admin-product-pages">
+    <router-outlet></router-outlet>
+</div>

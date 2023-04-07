@@ -9,6 +9,8 @@ import { ProductState } from "./product.model";
 import { productReducer } from "../reducers/product.reducer";
 import { NavState } from "./nav.model";
 import { navReducer } from "../reducers/nav.reducer";
+import { AuthState } from "./auth.model";
+import { authReducer } from "../reducers/auth.reducer";
 
 
 export interface AppState {
@@ -16,7 +18,8 @@ export interface AppState {
     cart: CartState,
     detail: DetailState
     products: ProductState
-    nav: NavState
+    nav: NavState,
+    auth: AuthState
 }
 
 export const ROOT_REDUCER: ActionReducerMap<AppState> = {
@@ -24,6 +27,7 @@ export const ROOT_REDUCER: ActionReducerMap<AppState> = {
     cart: cartReducer,
     detail: detailReducer,
     products: productReducer,
-    nav: navReducer
+    nav: navReducer,
+    auth: authReducer
 
 }
