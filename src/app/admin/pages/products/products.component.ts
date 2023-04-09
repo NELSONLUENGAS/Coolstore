@@ -14,8 +14,6 @@ import { finalize, Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
 
-  nameField = new FormControl()
-
 
   currentPath: string[] = []
 
@@ -25,27 +23,13 @@ export class ProductsComponent implements OnInit {
 
 
   constructor(
-
-    private sanitizer: DomSanitizer,
     private location: Location
   ) { }
 
 
   ngOnInit(): void {
     this.currentPath = location.pathname.split('/')
-    console.log(this.currentPath)
     this.location.onUrlChange((url) => this.currentPath = url.split('/'))
-    this.nameField.valueChanges
-      .subscribe()
-  }
-
-  public getSantizeUrl(url: string) {
-    return this.sanitizer.bypassSecurityTrustUrl(url)
-  }
-
-  getNameValue() {
-    console.log(this.nameField
-      .value)
   }
 
 

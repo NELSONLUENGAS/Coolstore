@@ -1,1 +1,34 @@
-<p>order-list works!</p>
+<div class="order-list">
+    <p-table id="table-desktop" [value]="allOrders" [scrollable]="true" [rows]="rows" [paginator]="true"
+        [scrollHeight]="scrollHeight + 'px'">
+        <ng-template pTemplate="header">
+            <tr>
+                <th rowspan="2">Order</th>
+                <th rowspan="2">Customer</th>
+                <th rowspan="2">Date</th>
+                <th rowspan="2">status</th>
+                <th rowspan="2">Total</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            <tr>
+                <th>View</th>
+            </tr>
+        </ng-template>
+        <ng-template #bodyLoaded let-order pTemplate="body">
+            <tr>
+                <td>{{order.order_number}}</td>
+                <td>
+                    {{order.customer.name}}
+                </td>
+                <td>{{order.date |date}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.total | currency}}</td>
+                <td>
+                    <button id="view" [routerLink]="['/admin/orders/order-detail', order.order_number]">
+                        <fa-icon [icon]="faView"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -61,5 +61,9 @@ $laptop: 1024px;
 
     .admin-nav-container {
         left: 250px;
+
+        .admin-nav-btn {
+            display: none;
+        }
     }
 }

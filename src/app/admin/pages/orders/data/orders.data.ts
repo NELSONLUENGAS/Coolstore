@@ -1,4 +1,6 @@
-export const orders = [
+import { IOrder } from "src/app/models/IOrder";
+
+export const orders: IOrder[] = [
     {
         order_number: "1001",
         date: "2023-03-23",

@@ -1,4 +1,5 @@
 @import '../../pages/products/products.component.scss';
+@import '../../pages/orders/orders.component.scss';
 
 $mobile-L: 425px;
 $tablet: 768px;
@@ -9,7 +10,7 @@ $laptop: 1024px;
 }
 
 .admin-layout {
-  background: radial-gradient(circle, #94e0ed, #86dbea, #77d6e6, #67d0e3, #55cbe0, #4bccdf, #41cdde, #35cedc, #3bd5db, #44dcda, #50e3d7, #5eead4);
+  // background: radial-gradient(circle, #94e0ed, #86dbea, #77d6e6, #67d0e3, #55cbe0, #4bccdf, #41cdde, #35cedc, #3bd5db, #44dcda, #50e3d7, #5eead4);
 
   main {
     padding-left: 0;

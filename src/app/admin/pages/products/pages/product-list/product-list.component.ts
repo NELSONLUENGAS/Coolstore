@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { faEye, faFileEdit, faNoteSticky, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductFacadeService } from 'src/app/NGRX/facades/product.facade.service';
 
