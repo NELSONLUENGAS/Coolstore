@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PrimengModule } from 'src/app/primeNg/primeng/primeng.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { OrdersComponent } from './orders.component';
   ],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    FontAwesomeModule,
+    PrimengModule
   ]
 })
 export class OrdersModule { }

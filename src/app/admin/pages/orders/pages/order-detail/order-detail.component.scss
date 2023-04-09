@@ -1,0 +1,129 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: $primary-color;
+        margin-bottom: 20px;
+    }
+
+    .invoice-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .info-section {
+            flex: 1;
+            margin-right: 20px;
+
+            h3 {
+                font-size: 16px;
+                font-weight: bold;
+                color: $primary-color;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 14px;
+                color: $secondary-color;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .items {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            th {
+                font-size: 14px;
+                font-weight: bold;
+                color: $secondary-color;
+                text-align: left;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            td {
+                font-size: 14px;
+                color: $secondary-color;
+                padding: 10px 0;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .name {
+                width: 50%;
+            }
+
+            .price,
+            .quantity,
+            .subtotal {
+                width: 16.67%;
+                text-align: right;
+            }
+        }
+    }
+
+    .total {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+
+        .total-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: $primary-color;
+            margin-right: 20px;
+        }
+
+        .total-value {
+            font-size: 16px;
+            color: $secondary-color;
+        }
+    }
+}
+
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 20px;
+
+    &-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        &-section {
+            flex: 1;
+            margin-right: 20px;
+
+            h3 {
+                font-size: 16px;
+                font-weight: bold;
+                color: $primary-color;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 14px;
+                color: $secondary-color;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    &-disclaimer {
+        font-size: 12px;
+        color: $secondary-color;
+        text-align: center;
+    }
+}

@@ -1,87 +1,10 @@
-<main>
-
-    <div class="order-details">
-        <div class="customer-details">
-            <h3>Detalles del cliente:</h3>
-            <p>Nombre: Juan Pérez</p>
-            <p>Dirección de envío: Calle del Paseo, 456, Sevilla, Andalucía, España, 41001</p>
-            <p>Teléfono: 555-123-4567</p>
-            <p>Correo electrónico: juanperez@example.com</p>
-        </div>
-        <div class="invoice-details">
-            <h3>Detalles de la factura:</h3>
-            <p>Número de factura: 1001</p>
-            <p>Fecha de emisión: 2023-03-23</p>
-            <p>Fecha de vencimiento: 2023-04-23</p>
-            <p>Método de pago: Tarjeta de crédito</p>
-            <p>Estado: Pendiente</p>
-            <p>Comentarios: Por favor, enviar a mi dirección de trabajo.</p>
-        </div>
-    </div>
-    <table class="order-table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio unitario</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Camisa de algodón</td>
-                <td>29.99</td>
-                <td>2</td>
-                <td>59.98</td>
-            </tr>
-            <tr>
-                <td>Pantalones vaqueros</td>
-                <td>39.99</td>
-                <td>1</td>
-                <td>39.99</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">Impuestos (21%)</td>
-                <td>12.60</td>
-            </tr>
-            <tr>
-                <td colspan="3">Descuentos</td>
-                <td>-10.00</td>
-            </tr>
-            <tr>
-                <td colspan="3">Total</td>
-                <td>102.57</td>
-            </tr>
-        </tfoot>
-    </table>
-    <div class="notes">
-        <p>Gracias por su compra. Por favor, póngase en contacto con nosotros si tiene alguna pregunta o comentario.</p>
-    </div>
-</main>
-<footer>
-    <div class="footer-info">
-        <div class="footer-section">
-            <h3>Contact Information</h3>
-            <p>Phone: 555-555-5555</p>
-            <p>Email: example@email.com</p>
-            <p>Address: 123 Main St, Anytown USA</p>
-        </div>
-        <div class="footer-section">
-            <h3>Payment Information</h3>
-            <p>Payment Method: Credit Card</p>
-            <p>Card Type: Visa</p>
-            <p>Card Number: **** **** **** 1234</p>
-        </div>
-        <div class="footer-section">
-            <h3>Shipping Information</h3>
-            <p>Shipping Method: Standard</p>
-            <p>Expected Delivery Date: 2023-03-30</p>
-            <p>Shipping Address: 456 Elm St, Anytown USA</p>
-        </div>
-    </div>
-    <div class="footer-disclaimer">
-        <p>This is a computer-generated invoice and does not require a physical signature.</p>
-    </div>
-</footer>
+<div *ngIf="currentPath.length < 5" class="admin-order-section">
+    <section routerLinkActive="active" id="order-list">
+        <a routerLink="order-list">
+            <h2><fa-icon [icon]="faListIcon"></fa-icon> Order List</h2>
+        </a>
+    </section>
+</div>
+<div class="admin-order-pages">
+    <router-outlet></router-outlet>
+</div>
